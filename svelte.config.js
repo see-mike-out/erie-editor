@@ -12,10 +12,12 @@ import adapter from '@sveltejs/adapter-static';
 
 const config = {
 	kit: {
-		adapter: adapter(),
+		adapter: adapter({
+			
+		}),
 		paths: {
 			// base: `/erie-editor`
-			base: process.argv.includes('dev') ? '' : (process.env.BASE_PATH + '/erie-editor')
+			base: process.argv.includes('dev') ? '' : (process.env.BASE_PATH)
 		}
 	}
 };
