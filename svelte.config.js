@@ -17,7 +17,7 @@ const config = {
 		}),
 		paths: {
 			// base: `/erie-editor`
-			base: process.argv.includes('dev') ? '' : (process.env.BASE_PATH + '/erie-editor')
+			base: process.argv.includes('dev') ? '' : (process.env.BASE_PATH)
 		},
 		prerender: {
 			handleHttpError: 'ignore'
