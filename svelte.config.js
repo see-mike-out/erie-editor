@@ -15,7 +15,7 @@ const config = {
 		adapter: adapter(),
 		paths: {
 			// base: `/erie-editor`
-			base: process.argv.includes('dev') ? '' : process.env.BASE_PATH
+			base: process.argv.includes('dev') ? '' : (process.env.BASE_PATH + '/erie-editor')
 		}
 	}
 };
