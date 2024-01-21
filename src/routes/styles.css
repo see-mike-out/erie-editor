@@ -10,6 +10,14 @@
   box-sizing: border-box;
 }
 
+a:active, 
+a:hover, 
+button:focus,
+button:hover,
+input:focus {
+  outline: 2px solid #ffcc00;
+}
+
 body {
   margin: 0;
   padding: 0;

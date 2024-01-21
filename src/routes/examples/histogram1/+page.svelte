@@ -2,6 +2,7 @@
 	import SpecView from "../specView.svelte";
 	import Player from "../player.svelte";
 	import * as Erie from "erie-web";
+    import { onMount } from "svelte";
 
 	const Stream = Erie.Stream;
 	

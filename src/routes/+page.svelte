@@ -21,17 +21,20 @@
 </script>
 
 <svelte:head>
-	<title>Erie Prototype</title>
+	<title>Erie Editor</title>
 </svelte:head>
 
 <header>
-	<h1>Erie Prototype</h1>
+	<h1>Erie Editor</h1>
 	<nav>
 		<button
 			on:click={() => {
 				toggleExampleTab();
 			}}>{!showExampleTab ? "See examples" : "Hide examples"}</button
 		>
+		<a href="https://chromewebstore.google.com/detail/erie-recorder-for-chrome/efbafkmjeinnnkjlkipfmpcbglbjgedc" target="_blank">Recorder Extension (only for Chrome)</a>
+		<a href="https://github.com/see-mike-out/erie-web" target="_blank">GitHub</a>
+		<a href="https://see-mike-out.github.io/erie-documentation/" target="_blank">Documentation</a>
 	</nav>
 </header>
 <div class="main-frame">
@@ -95,6 +98,9 @@
 		color: black;
 		line-height: 100%;
 		font-size: 1rem;
+	}
+	nav a {
+		margin: 0 0.5rem 0 0;
 	}
 	.main-frame {
 		display: flex;
