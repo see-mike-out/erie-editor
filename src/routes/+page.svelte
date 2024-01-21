@@ -1,59 +1,134 @@
 <script>
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
+	import { onMount } from "svelte";
+	import ExampleTab from "../tester-components/example-tab.svelte";
+	import VisualizationView from "../tester-components/visualization-view.svelte";
+	import { loadSpecs, CurrentData, showVis, setShowVis } from "../storage";
+	import SonificationView from "../tester-components/sonification-view.svelte";
+	import * as Erie from "erie-web";
+	
+	const readyRecording = Erie.readyRecording;
+	
+
+	let showExampleTab = true;
+	function toggleExampleTab() {
+		showExampleTab = !showExampleTab;
+	}
+	onMount(() => {
+		loadSpecs();
+		setShowVis();
+		readyRecording();
+	});
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>Erie Prototype</title>
 </svelte:head>
 
-<section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
-			</picture>
-		</span>
-
-		to your new<br />SvelteKit app
-	</h1>
-
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
-
-	<Counter />
-</section>
+<header>
+	<h1>Erie Prototype</h1>
+	<nav>
+		<button
+			on:click={() => {
+				toggleExampleTab();
+			}}>{!showExampleTab ? "See examples" : "Hide examples"}</button
+		>
+	</nav>
+</header>
+<div class="main-frame">
+	{#if showExampleTab}
+		<section id="example-tab">
+			<ExampleTab />
+		</section>
+	{/if}
+	<div id="tester-area" class={showExampleTab ? "with-example" : "no-example"}>
+		<section id="sonification-tester">
+			{#if $CurrentData}
+				<SonificationView />
+			{/if}
+		</section>
+		{#if $showVis}
+			<section id="visualization-tester">
+				{#if $CurrentData}
+					<VisualizationView
+						closer={() => {
+							showVis.set(false);
+						}}
+					/>
+				{/if}
+			</section>
+		{:else}
+			<section>
+				<h2>
+					Visual graph <button
+						on:click={() => {
+							showVis.set(true);
+						}}>Show</button
+					>
+				</h2>
+			</section>
+		{/if}
+	</div>
+</div>
 
 <style>
-	section {
+	header {
+		height: 2rem;
+		padding: 0.5rem;
+		border-bottom: 1px solid #dddddd;
+		line-height: 100%;
+		width: 100%;
+		margin: 0;
+		display: flex;
+	}
+	h1 {
+		margin: 0;
+		line-height: 100%;
+	}
+	nav {
+		margin-left: 0.5rem;
+		font-size: 1rem;
+	}
+	nav button {
+		background-color: transparent;
+		margin: 0 0.5rem 0 0;
+		padding: 0;
+		color: black;
+		line-height: 100%;
+		font-size: 1rem;
+	}
+	.main-frame {
+		display: flex;
+		height: calc(100vh - 2rem);
+	}
+	#example-tab {
+		width: 250px;
+		border-right: 1px solid #dddddd;
+		overflow-y: scroll;
+	}
+	#tester-area {
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 0.6;
 	}
-
-	h1 {
-		width: 100%;
+	#tester-area.with-example {
+		width: calc(100% - 250px);
 	}
-
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
+	#tester-area.no-example {
+		width: 100vw;
 	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
+	#sonification-tester {
+		border-bottom: 1px solid #dddddd;
+	}
+	#sonification-tester,
+	#visualization-tester {
+		max-height: 100%;
+		min-height: 50%;
+		overflow-y: scroll;
+	}
+	h2 {
+		padding: 0.5rem;
+		margin: 0;
+		height: 2rem;
+		border-bottom: 1px solid #dddddd;
+		line-height: 100%;
 	}
 </style>

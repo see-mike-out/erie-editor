@@ -1,0 +1,41 @@
+{
+  "description": "Melbourne pedestrian traffic signal.",
+  "data": {
+    "values": [
+      {"phase": "wait", "time": 2},
+      {"phase": "walk", "time": 3},
+      {"phase": "warn", "time": 2}
+    ]
+  },
+  "synth": [
+    {
+      "name": "Fm1",
+      "type": "FM"
+    }
+  ],
+  "tone": {
+    "type": "default"
+  },
+  "encoding": {
+    "time": {
+      "field": "phase",
+      "type": "nominal",
+      "scale": {
+        "timing": "relative",
+        "order": ["wait", "walk", "warn"]
+      }
+    },
+    "tapSpeed": {
+      "field": "phase",
+      "type": "nominal",
+      "scale": {
+        "domain": ["wait", "walk", "warn"],
+        "range": [2, 4, 8]
+      }
+    }
+  },
+  "config": {
+    "skipScaleSpeech": true,
+    "speechRate": 2.3
+  }
+}
