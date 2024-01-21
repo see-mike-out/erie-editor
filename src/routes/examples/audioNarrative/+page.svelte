@@ -1,9 +1,12 @@
 <script>
-	import { onMount } from 'svelte';
-	import { deepcopy } from '../../../storage';
-	import { renderVLChart } from '../../../chart-control/run-vega';
-	import { compileAuidoGraph } from 'erie-web';
-	import CodeViewer from '../../../tester-components/code-viewer.svelte';
+	import { onMount } from "svelte";
+	import { deepcopy } from "../../../storage";
+	import { renderVLChart } from "../../../chart-control/run-vega";
+	import * as Erie from "erie-web";
+	import CodeViewer from "../../../tester-components/code-viewer.svelte";
+
+	const compileAuidoGraph = Erie.compileAuidoGraph;
+
 	/* chunks
   filter => APPL
   1. 2000-01-01 -- 2000-08-01: fluctuation between 21 dollas and 34 dollars.
@@ -20,743 +23,743 @@
 	let data_chunks = [
 		[
 			{
-				symbol: 'AAPL',
-				date: 'Jan 1 2000',
-				price: 25.94
+				symbol: "AAPL",
+				date: "Jan 1 2000",
+				price: 25.94,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Feb 1 2000',
-				price: 28.66
+				symbol: "AAPL",
+				date: "Feb 1 2000",
+				price: 28.66,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Mar 1 2000',
-				price: 33.95
+				symbol: "AAPL",
+				date: "Mar 1 2000",
+				price: 33.95,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Apr 1 2000',
-				price: 31.01
+				symbol: "AAPL",
+				date: "Apr 1 2000",
+				price: 31.01,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'May 1 2000',
-				price: 21
+				symbol: "AAPL",
+				date: "May 1 2000",
+				price: 21,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jun 1 2000',
-				price: 26.19
+				symbol: "AAPL",
+				date: "Jun 1 2000",
+				price: 26.19,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jul 1 2000',
-				price: 25.41
+				symbol: "AAPL",
+				date: "Jul 1 2000",
+				price: 25.41,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Aug 1 2000',
-				price: 30.47
-			}
+				symbol: "AAPL",
+				date: "Aug 1 2000",
+				price: 30.47,
+			},
 		],
 		[
 			{
-				symbol: 'AAPL',
-				date: 'Aug 1 2000',
-				price: 30.47
+				symbol: "AAPL",
+				date: "Aug 1 2000",
+				price: 30.47,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Sep 1 2000',
-				price: 12.88
+				symbol: "AAPL",
+				date: "Sep 1 2000",
+				price: 12.88,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Oct 1 2000',
-				price: 9.78
+				symbol: "AAPL",
+				date: "Oct 1 2000",
+				price: 9.78,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Nov 1 2000',
-				price: 8.25
+				symbol: "AAPL",
+				date: "Nov 1 2000",
+				price: 8.25,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Dec 1 2000',
-				price: 7.44
-			}
+				symbol: "AAPL",
+				date: "Dec 1 2000",
+				price: 7.44,
+			},
 		],
 		[
 			{
-				symbol: 'AAPL',
-				date: 'Dec 1 2000',
-				price: 7.44
+				symbol: "AAPL",
+				date: "Dec 1 2000",
+				price: 7.44,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jan 1 2001',
-				price: 10.81
+				symbol: "AAPL",
+				date: "Jan 1 2001",
+				price: 10.81,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Feb 1 2001',
-				price: 9.12
+				symbol: "AAPL",
+				date: "Feb 1 2001",
+				price: 9.12,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Mar 1 2001',
-				price: 11.03
+				symbol: "AAPL",
+				date: "Mar 1 2001",
+				price: 11.03,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Apr 1 2001',
-				price: 12.74
+				symbol: "AAPL",
+				date: "Apr 1 2001",
+				price: 12.74,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'May 1 2001',
-				price: 9.98
+				symbol: "AAPL",
+				date: "May 1 2001",
+				price: 9.98,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jun 1 2001',
-				price: 11.62
+				symbol: "AAPL",
+				date: "Jun 1 2001",
+				price: 11.62,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jul 1 2001',
-				price: 9.4
+				symbol: "AAPL",
+				date: "Jul 1 2001",
+				price: 9.4,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Aug 1 2001',
-				price: 9.27
+				symbol: "AAPL",
+				date: "Aug 1 2001",
+				price: 9.27,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Sep 1 2001',
-				price: 7.76
+				symbol: "AAPL",
+				date: "Sep 1 2001",
+				price: 7.76,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Oct 1 2001',
-				price: 8.78
+				symbol: "AAPL",
+				date: "Oct 1 2001",
+				price: 8.78,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Nov 1 2001',
-				price: 10.65
+				symbol: "AAPL",
+				date: "Nov 1 2001",
+				price: 10.65,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Dec 1 2001',
-				price: 10.95
+				symbol: "AAPL",
+				date: "Dec 1 2001",
+				price: 10.95,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jan 1 2002',
-				price: 12.36
+				symbol: "AAPL",
+				date: "Jan 1 2002",
+				price: 12.36,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Feb 1 2002',
-				price: 10.85
+				symbol: "AAPL",
+				date: "Feb 1 2002",
+				price: 10.85,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Mar 1 2002',
-				price: 11.84
+				symbol: "AAPL",
+				date: "Mar 1 2002",
+				price: 11.84,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Apr 1 2002',
-				price: 12.14
+				symbol: "AAPL",
+				date: "Apr 1 2002",
+				price: 12.14,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'May 1 2002',
-				price: 11.65
+				symbol: "AAPL",
+				date: "May 1 2002",
+				price: 11.65,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jun 1 2002',
-				price: 8.86
+				symbol: "AAPL",
+				date: "Jun 1 2002",
+				price: 8.86,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jul 1 2002',
-				price: 7.63
+				symbol: "AAPL",
+				date: "Jul 1 2002",
+				price: 7.63,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Aug 1 2002',
-				price: 7.38
+				symbol: "AAPL",
+				date: "Aug 1 2002",
+				price: 7.38,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Sep 1 2002',
-				price: 7.25
+				symbol: "AAPL",
+				date: "Sep 1 2002",
+				price: 7.25,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Oct 1 2002',
-				price: 8.03
+				symbol: "AAPL",
+				date: "Oct 1 2002",
+				price: 8.03,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Nov 1 2002',
-				price: 7.75
+				symbol: "AAPL",
+				date: "Nov 1 2002",
+				price: 7.75,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Dec 1 2002',
-				price: 7.16
+				symbol: "AAPL",
+				date: "Dec 1 2002",
+				price: 7.16,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jan 1 2003',
-				price: 7.18
+				symbol: "AAPL",
+				date: "Jan 1 2003",
+				price: 7.18,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Feb 1 2003',
-				price: 7.51
+				symbol: "AAPL",
+				date: "Feb 1 2003",
+				price: 7.51,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Mar 1 2003',
-				price: 7.07
+				symbol: "AAPL",
+				date: "Mar 1 2003",
+				price: 7.07,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Apr 1 2003',
-				price: 7.11
+				symbol: "AAPL",
+				date: "Apr 1 2003",
+				price: 7.11,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'May 1 2003',
-				price: 8.98
+				symbol: "AAPL",
+				date: "May 1 2003",
+				price: 8.98,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jun 1 2003',
-				price: 9.53
+				symbol: "AAPL",
+				date: "Jun 1 2003",
+				price: 9.53,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jul 1 2003',
-				price: 10.54
+				symbol: "AAPL",
+				date: "Jul 1 2003",
+				price: 10.54,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Aug 1 2003',
-				price: 11.31
+				symbol: "AAPL",
+				date: "Aug 1 2003",
+				price: 11.31,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Sep 1 2003',
-				price: 10.36
+				symbol: "AAPL",
+				date: "Sep 1 2003",
+				price: 10.36,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Oct 1 2003',
-				price: 11.44
+				symbol: "AAPL",
+				date: "Oct 1 2003",
+				price: 11.44,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Nov 1 2003',
-				price: 10.45
+				symbol: "AAPL",
+				date: "Nov 1 2003",
+				price: 10.45,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Dec 1 2003',
-				price: 10.69
+				symbol: "AAPL",
+				date: "Dec 1 2003",
+				price: 10.69,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jan 1 2004',
-				price: 11.28
+				symbol: "AAPL",
+				date: "Jan 1 2004",
+				price: 11.28,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Feb 1 2004',
-				price: 11.96
+				symbol: "AAPL",
+				date: "Feb 1 2004",
+				price: 11.96,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Mar 1 2004',
-				price: 13.52
+				symbol: "AAPL",
+				date: "Mar 1 2004",
+				price: 13.52,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Apr 1 2004',
-				price: 12.89
+				symbol: "AAPL",
+				date: "Apr 1 2004",
+				price: 12.89,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'May 1 2004',
-				price: 14.03
+				symbol: "AAPL",
+				date: "May 1 2004",
+				price: 14.03,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jun 1 2004',
-				price: 16.27
+				symbol: "AAPL",
+				date: "Jun 1 2004",
+				price: 16.27,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jul 1 2004',
-				price: 16.17
+				symbol: "AAPL",
+				date: "Jul 1 2004",
+				price: 16.17,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Aug 1 2004',
-				price: 17.25
+				symbol: "AAPL",
+				date: "Aug 1 2004",
+				price: 17.25,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Sep 1 2004',
-				price: 19.38
-			}
+				symbol: "AAPL",
+				date: "Sep 1 2004",
+				price: 19.38,
+			},
 		],
 		[
 			{
-				symbol: 'AAPL',
-				date: 'Sep 1 2004',
-				price: 19.38
+				symbol: "AAPL",
+				date: "Sep 1 2004",
+				price: 19.38,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Oct 1 2004',
-				price: 26.2
+				symbol: "AAPL",
+				date: "Oct 1 2004",
+				price: 26.2,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Nov 1 2004',
-				price: 33.53
+				symbol: "AAPL",
+				date: "Nov 1 2004",
+				price: 33.53,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Dec 1 2004',
-				price: 32.2
+				symbol: "AAPL",
+				date: "Dec 1 2004",
+				price: 32.2,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jan 1 2005',
-				price: 38.45
+				symbol: "AAPL",
+				date: "Jan 1 2005",
+				price: 38.45,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Feb 1 2005',
-				price: 44.86
+				symbol: "AAPL",
+				date: "Feb 1 2005",
+				price: 44.86,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Mar 1 2005',
-				price: 41.67
+				symbol: "AAPL",
+				date: "Mar 1 2005",
+				price: 41.67,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Apr 1 2005',
-				price: 36.06
+				symbol: "AAPL",
+				date: "Apr 1 2005",
+				price: 36.06,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'May 1 2005',
-				price: 39.76
+				symbol: "AAPL",
+				date: "May 1 2005",
+				price: 39.76,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jun 1 2005',
-				price: 36.81
+				symbol: "AAPL",
+				date: "Jun 1 2005",
+				price: 36.81,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jul 1 2005',
-				price: 42.65
+				symbol: "AAPL",
+				date: "Jul 1 2005",
+				price: 42.65,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Aug 1 2005',
-				price: 46.89
+				symbol: "AAPL",
+				date: "Aug 1 2005",
+				price: 46.89,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Sep 1 2005',
-				price: 53.61
+				symbol: "AAPL",
+				date: "Sep 1 2005",
+				price: 53.61,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Oct 1 2005',
-				price: 57.59
+				symbol: "AAPL",
+				date: "Oct 1 2005",
+				price: 57.59,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Nov 1 2005',
-				price: 67.82
+				symbol: "AAPL",
+				date: "Nov 1 2005",
+				price: 67.82,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Dec 1 2005',
-				price: 71.89
+				symbol: "AAPL",
+				date: "Dec 1 2005",
+				price: 71.89,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jan 1 2006',
-				price: 75.51
+				symbol: "AAPL",
+				date: "Jan 1 2006",
+				price: 75.51,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Feb 1 2006',
-				price: 68.49
+				symbol: "AAPL",
+				date: "Feb 1 2006",
+				price: 68.49,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Mar 1 2006',
-				price: 62.72
+				symbol: "AAPL",
+				date: "Mar 1 2006",
+				price: 62.72,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Apr 1 2006',
-				price: 70.39
+				symbol: "AAPL",
+				date: "Apr 1 2006",
+				price: 70.39,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'May 1 2006',
-				price: 59.77
+				symbol: "AAPL",
+				date: "May 1 2006",
+				price: 59.77,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jun 1 2006',
-				price: 57.27
+				symbol: "AAPL",
+				date: "Jun 1 2006",
+				price: 57.27,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jul 1 2006',
-				price: 67.96
+				symbol: "AAPL",
+				date: "Jul 1 2006",
+				price: 67.96,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Aug 1 2006',
-				price: 67.85
+				symbol: "AAPL",
+				date: "Aug 1 2006",
+				price: 67.85,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Sep 1 2006',
-				price: 76.98
+				symbol: "AAPL",
+				date: "Sep 1 2006",
+				price: 76.98,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Oct 1 2006',
-				price: 81.08
+				symbol: "AAPL",
+				date: "Oct 1 2006",
+				price: 81.08,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Nov 1 2006',
-				price: 91.66
-			}
+				symbol: "AAPL",
+				date: "Nov 1 2006",
+				price: 91.66,
+			},
 		],
 		[
 			{
-				symbol: 'AAPL',
-				date: 'Nov 1 2006',
-				price: 91.66
+				symbol: "AAPL",
+				date: "Nov 1 2006",
+				price: 91.66,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Dec 1 2006',
-				price: 84.84
+				symbol: "AAPL",
+				date: "Dec 1 2006",
+				price: 84.84,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jan 1 2007',
-				price: 85.73
+				symbol: "AAPL",
+				date: "Jan 1 2007",
+				price: 85.73,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Feb 1 2007',
-				price: 84.61
+				symbol: "AAPL",
+				date: "Feb 1 2007",
+				price: 84.61,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Mar 1 2007',
-				price: 92.91
+				symbol: "AAPL",
+				date: "Mar 1 2007",
+				price: 92.91,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Apr 1 2007',
-				price: 99.8
+				symbol: "AAPL",
+				date: "Apr 1 2007",
+				price: 99.8,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'May 1 2007',
-				price: 121.19
+				symbol: "AAPL",
+				date: "May 1 2007",
+				price: 121.19,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jun 1 2007',
-				price: 122.04
+				symbol: "AAPL",
+				date: "Jun 1 2007",
+				price: 122.04,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jul 1 2007',
-				price: 131.76
+				symbol: "AAPL",
+				date: "Jul 1 2007",
+				price: 131.76,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Aug 1 2007',
-				price: 138.48
+				symbol: "AAPL",
+				date: "Aug 1 2007",
+				price: 138.48,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Sep 1 2007',
-				price: 153.47
+				symbol: "AAPL",
+				date: "Sep 1 2007",
+				price: 153.47,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Oct 1 2007',
-				price: 189.95
+				symbol: "AAPL",
+				date: "Oct 1 2007",
+				price: 189.95,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Nov 1 2007',
-				price: 182.22
+				symbol: "AAPL",
+				date: "Nov 1 2007",
+				price: 182.22,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Dec 1 2007',
-				price: 198.08
+				symbol: "AAPL",
+				date: "Dec 1 2007",
+				price: 198.08,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jan 1 2008',
-				price: 135.36
+				symbol: "AAPL",
+				date: "Jan 1 2008",
+				price: 135.36,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Feb 1 2008',
-				price: 125.02
+				symbol: "AAPL",
+				date: "Feb 1 2008",
+				price: 125.02,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Mar 1 2008',
-				price: 143.5
+				symbol: "AAPL",
+				date: "Mar 1 2008",
+				price: 143.5,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Apr 1 2008',
-				price: 173.95
+				symbol: "AAPL",
+				date: "Apr 1 2008",
+				price: 173.95,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'May 1 2008',
-				price: 188.75
-			}
+				symbol: "AAPL",
+				date: "May 1 2008",
+				price: 188.75,
+			},
 		],
 		[
 			{
-				symbol: 'AAPL',
-				date: 'May 1 2008',
-				price: 188.75
+				symbol: "AAPL",
+				date: "May 1 2008",
+				price: 188.75,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jun 1 2008',
-				price: 167.44
+				symbol: "AAPL",
+				date: "Jun 1 2008",
+				price: 167.44,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jul 1 2008',
-				price: 158.95
+				symbol: "AAPL",
+				date: "Jul 1 2008",
+				price: 158.95,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Aug 1 2008',
-				price: 169.53
+				symbol: "AAPL",
+				date: "Aug 1 2008",
+				price: 169.53,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Sep 1 2008',
-				price: 113.66
+				symbol: "AAPL",
+				date: "Sep 1 2008",
+				price: 113.66,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Oct 1 2008',
-				price: 107.59
+				symbol: "AAPL",
+				date: "Oct 1 2008",
+				price: 107.59,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Nov 1 2008',
-				price: 92.67
+				symbol: "AAPL",
+				date: "Nov 1 2008",
+				price: 92.67,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Dec 1 2008',
-				price: 85.35
+				symbol: "AAPL",
+				date: "Dec 1 2008",
+				price: 85.35,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jan 1 2009',
-				price: 90.13
+				symbol: "AAPL",
+				date: "Jan 1 2009",
+				price: 90.13,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Feb 1 2009',
-				price: 89.31
-			}
+				symbol: "AAPL",
+				date: "Feb 1 2009",
+				price: 89.31,
+			},
 		],
 		[
 			{
-				symbol: 'AAPL',
-				date: 'Feb 1 2009',
-				price: 89.31
+				symbol: "AAPL",
+				date: "Feb 1 2009",
+				price: 89.31,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Mar 1 2009',
-				price: 105.12
+				symbol: "AAPL",
+				date: "Mar 1 2009",
+				price: 105.12,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Apr 1 2009',
-				price: 125.83
+				symbol: "AAPL",
+				date: "Apr 1 2009",
+				price: 125.83,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'May 1 2009',
-				price: 135.81
+				symbol: "AAPL",
+				date: "May 1 2009",
+				price: 135.81,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jun 1 2009',
-				price: 142.43
+				symbol: "AAPL",
+				date: "Jun 1 2009",
+				price: 142.43,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jul 1 2009',
-				price: 163.39
+				symbol: "AAPL",
+				date: "Jul 1 2009",
+				price: 163.39,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Aug 1 2009',
-				price: 168.21
+				symbol: "AAPL",
+				date: "Aug 1 2009",
+				price: 168.21,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Sep 1 2009',
-				price: 185.35
+				symbol: "AAPL",
+				date: "Sep 1 2009",
+				price: 185.35,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Oct 1 2009',
-				price: 188.5
+				symbol: "AAPL",
+				date: "Oct 1 2009",
+				price: 188.5,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Nov 1 2009',
-				price: 199.91
+				symbol: "AAPL",
+				date: "Nov 1 2009",
+				price: 199.91,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Dec 1 2009',
-				price: 210.73
+				symbol: "AAPL",
+				date: "Dec 1 2009",
+				price: 210.73,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Jan 1 2010',
-				price: 192.06
+				symbol: "AAPL",
+				date: "Jan 1 2010",
+				price: 192.06,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Feb 1 2010',
-				price: 204.62
+				symbol: "AAPL",
+				date: "Feb 1 2010",
+				price: 204.62,
 			},
 			{
-				symbol: 'AAPL',
-				date: 'Mar 1 2010',
-				price: 223.02
-			}
-		]
+				symbol: "AAPL",
+				date: "Mar 1 2010",
+				price: 223.02,
+			},
+		],
 	];
 	let n_data_points = data_chunks.map((d) => d.length);
 	let descriptions = [
 		"From January first, 2000 to August first, Apple's stock price fluctuates between 21 dollars and 34 dollars.",
-		'From August first, 2000 to December first, the stock price suddenly droped from 30.47 dollars to 7.44 dollars.',
-		'From December first, 2000 to September first, 2004, the stock price was mostly steady with a slight increase from 12.88 dollars to 19.38 dollars.',
-		'From Septemer first, 2004 to November first, 2006, the stock price increased from 19.38 dollars to 91.66 dollars.',
-		'From November first, 2006 to May first, 2008, the stock price more rapidly increased from 91.66 dollars to 198.08, and then suddenly dropped to 125.92 dollars. Then, it increased rapidly to 188.75 dollars.',
-		'From May first, 2008 to February first, 2009, the stock price droped from 188.75 dollars to 89.31 dollars.',
-		'From February first, 2009 to March first, 2010, the stock price steadily increased from 89.31 dollars to 233.02 dollars.'
+		"From August first, 2000 to December first, the stock price suddenly droped from 30.47 dollars to 7.44 dollars.",
+		"From December first, 2000 to September first, 2004, the stock price was mostly steady with a slight increase from 12.88 dollars to 19.38 dollars.",
+		"From Septemer first, 2004 to November first, 2006, the stock price increased from 19.38 dollars to 91.66 dollars.",
+		"From November first, 2006 to May first, 2008, the stock price more rapidly increased from 91.66 dollars to 198.08, and then suddenly dropped to 125.92 dollars. Then, it increased rapidly to 188.75 dollars.",
+		"From May first, 2008 to February first, 2009, the stock price droped from 188.75 dollars to 89.31 dollars.",
+		"From February first, 2009 to March first, 2010, the stock price steadily increased from 89.31 dollars to 233.02 dollars.",
 	];
 	let vis_spec_template = {
-		$schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-		description: '',
+		$schema: "https://vega.github.io/schema/vega-lite/v5.json",
+		description: "",
 		data: { values: [] },
 		width: 100,
-		background: 'transparent',
-		mark: { type: 'line' },
+		background: "transparent",
+		mark: { type: "line" },
 		encoding: {
-			x: { field: 'date', type: 'temporal' },
+			x: { field: "date", type: "temporal" },
 			y: {
-				field: 'price',
-				type: 'quantitative',
+				field: "price",
+				type: "quantitative",
 				scale: {
-					domain: [0, 230]
-				}
-			}
-		}
+					domain: [0, 230],
+				},
+			},
+		},
 	};
 	let son_stream_template = {
 		data: { values: [] },
 		tone: {
-			continued: true
+			continued: true,
 		},
 		encoding: {
 			time: {
-				field: 'date',
-				type: 'temporal',
+				field: "date",
+				type: "temporal",
 				scale: {
-					length: 1
-				}
+					length: 1,
+				},
 			},
 			pitch: {
-				field: 'price',
-				type: 'quantitative',
+				field: "price",
+				type: "quantitative",
 				scale: {
-					polarity: 'positive',
+					polarity: "positive",
 					domain: [0, 230],
-					range: [200, 1600]
-				}
-			}
+					range: [200, 1600],
+				},
+			},
 		},
 		config: {
 			sequenceScaleConsistency: true,
 			skipTitle: true,
 			skipStartPlaySpeech: true,
-			skipScaleSpeech: true
-		}
+			skipScaleSpeech: true,
+		},
 	};
 
 	let enc_template = {
-		field: 'price',
-		type: 'quantitative',
+		field: "price",
+		type: "quantitative",
 		scale: {
-			polarity: 'positive',
+			polarity: "positive",
 			domain: [0, 230],
-			range: [200, 1600]
-		}
+			range: [200, 1600],
+		},
 	};
 	let visualization_specs,
 		visError = false,
-		glb_status = 'finished';
+		glb_status = "finished";
 	let main_desc = `Apple's Stock Price Change from 2000 to 2010`;
 	let sonificaiton_specs = {
 			description: main_desc,
 			sequence: [],
 			config: {
-				speechRate: 1.75
+				speechRate: 1.75,
 				// skipScaleSpeech: true
-			}
+			},
 		},
 		specError = false;
 	let audio, queue, playAt;
@@ -770,7 +773,7 @@
 			return spec;
 		});
 		visualization_specs.forEach((spec, i) => {
-			renderVLChart('#vis-area-' + i, spec, { actions: false })
+			renderVLChart("#vis-area-" + i, spec, { actions: false })
 				.then((result) => {
 					visError = false;
 				})
@@ -801,19 +804,19 @@
 			})
 			.filter((d) => d);
 
-		document.body.removeEventListener('erieOnStatusChange', updatePlayAt);
+		document.body.removeEventListener("erieOnStatusChange", updatePlayAt);
 		if (j === undefined) {
 			updatePlayAt = (e) => {
 				playAt = Math.floor((audio?.queue?.playAt - 3) / 3);
 				glb_status = e.detail.status;
 			};
-			document.body.addEventListener('erieOnStatusChange', updatePlayAt);
+			document.body.addEventListener("erieOnStatusChange", updatePlayAt);
 		} else {
 			updatePlayAt = (e) => {
 				playAt = Math.floor((audio?.queue?.playAt - 1) / 2);
 				glb_status = e.detail.status;
 			};
-			document.body.addEventListener('erieOnStatusChange', updatePlayAt);
+			document.body.addEventListener("erieOnStatusChange", updatePlayAt);
 		}
 
 		console.log(sonificaiton_specs);
@@ -822,12 +825,12 @@
 		window.audioPlayer = audio;
 		return audio;
 	}
-	let audioChannel = 'pitch',
+	let audioChannel = "pitch",
 		range = [200, 1600];
 	let defRanges = {
 		pitch: [200, 1600],
 		pan: [-1, 1],
-		loudness: [0, 1]
+		loudness: [0, 1],
 	};
 	function updateEncoding(enc) {
 		delete son_stream_template.encoding[audioChannel];
@@ -1211,9 +1214,11 @@
 					updateEncoding(e.target.value);
 				}}
 			>
-				<option value="pitch" selected={audioChannel === 'pitch'}>Pitch</option>
-				<option value="loudness" selected={audioChannel === 'loudness'}>Loudness</option>
-				<option value="pan" selected={audioChannel === 'pan'}>Pan</option>
+				<option value="pitch" selected={audioChannel === "pitch"}>Pitch</option>
+				<option value="loudness" selected={audioChannel === "loudness"}
+					>Loudness</option
+				>
+				<option value="pan" selected={audioChannel === "pan"}>Pan</option>
 			</select>
 		</div>
 		<div>
@@ -1267,15 +1272,18 @@
 	<h2>Visualization</h2>
 	<section id="vis-view">
 		{#each data_chunks as d, i}
-			<div id={'vis-wrap-' + i} class={'vis-wrap ' + (playAt == i ? 'current' : '')}>
+			<div
+				id={"vis-wrap-" + i}
+				class={"vis-wrap " + (playAt == i ? "current" : "")}
+			>
 				<div class="vis-title">
 					#{i + 1}.
 					{descriptions[i]}
 				</div>
-				<div id={'vis-area-' + i} />
+				<div id={"vis-area-" + i} />
 				<button
 					class="seg-play"
-					disabled={glb_status !== 'finished'}
+					disabled={glb_status !== "finished"}
 					on:click={() => {
 						makeSonification(i).then((a) => {
 							a.playQueue().then(() => {
@@ -1303,15 +1311,26 @@
 
 	<section id="specs">
 		<h2>Erie specs used for this replication</h2>
-		<p>These specs assume that the segmentation was done by manually or algorithmically.</p>
+		<p>
+			These specs assume that the segmentation was done by manually or
+			algorithmically.
+		</p>
 		<h3>Segment</h3>
 		<div style="height: 300px;">
-			<CodeViewer containerId="seg-expr" code={template_spec} language="javascript" />
+			<CodeViewer
+				containerId="seg-expr"
+				code={template_spec}
+				language="javascript"
+			/>
 		</div>
 		<h3>Sequence</h3>
 		<p>This sequence spec is generated by reusing the above segment spec.</p>
 		<div style="height: 600px;">
-			<CodeViewer containerId="seq-expr" code={sequence_spec} language="javascript" />
+			<CodeViewer
+				containerId="seq-expr"
+				code={sequence_spec}
+				language="javascript"
+			/>
 		</div>
 	</section>
 </main>

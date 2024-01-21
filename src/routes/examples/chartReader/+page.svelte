@@ -1,10 +1,12 @@
 <script>
 	import { onMount } from "svelte";
 	import { deepcopy } from "../../../storage";
-	import compileAuidoGraph from "erie-web";
+	import * as Erie from "erie-web";
 	import * as d3 from "d3";
 	import { browser } from "$app/environment";
 	import CodeViewer from "../../../tester-components/code-viewer.svelte";
+
+	const compileAuidoGraph = Erie.compileAuidoGraph;
 
 	/* chunks
   filter => APPL

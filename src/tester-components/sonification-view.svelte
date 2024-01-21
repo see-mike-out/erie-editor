@@ -1,26 +1,27 @@
 <script>
-	import { writable } from 'svelte/store';
-	import { CurrentData, ExampleCase, getStringed, tryParse } from '../storage';
+	import { writable } from "svelte/store";
+	import { CurrentData, ExampleCase, getStringed, tryParse } from "../storage";
 	import MonacoEditor from "./monaco-editor.svelte";
-	import { onMount } from 'svelte';
-	import * as Erie from 'erie-web';
-	
+	import { onMount } from "svelte";
+	import * as Erie from "erie-web";
+
 	const compileAuidoGraph = Erie.compileAuidoGraph;
 
-	let content = '',
+	let content = "",
 		codeStore = writable(),
 		queue = [],
-		audio, playAt;
+		audio,
+		playAt;
 	let specError = false;
 
 	function updatePlayAt() {
 		playAt = audio?.queue?.playAt;
 	}
-	document.body.addEventListener('erieOnStatusChange', updatePlayAt);
+	document.body.addEventListener("erieOnStatusChange", updatePlayAt);
 
 	function renderAudio(s) {
 		specError = false;
-		let parsed = tryParse(s)
+		let parsed = tryParse(s);
 		if (!parsed) {
 			specError = true;
 			return;
@@ -51,30 +52,30 @@
 		audio?.stopScaleDescription();
 	}
 	const tone_columns = [
-		'start',
-		'end',
-		'timbre',
-		'duration',
-		'pitch',
-		'detune',
-		'loudness',
-		'pan',
-		'postReverb',
-		'tap',
-		'modulation'
+		"start",
+		"end",
+		"timbre",
+		"duration",
+		"pitch",
+		"detune",
+		"loudness",
+		"pan",
+		"postReverb",
+		"tap",
+		"modulation",
 	];
 	const tone_columns2 = [
-		'time',
-		'duration',
-		'timbre',
-		'pitch',
-		'detune',
-		'loudness',
-		'pan',
-		'postReverb',
-		'speech',
-		'tap',
-		'modulation'
+		"time",
+		"duration",
+		"timbre",
+		"pitch",
+		"detune",
+		"loudness",
+		"pan",
+		"postReverb",
+		"speech",
+		"tap",
+		"modulation",
 	];
 	onMount(() => {
 		content = getStringed($CurrentData?.sonification);
@@ -90,22 +91,23 @@
 	});
 	CurrentData.subscribe((c) => {
 		renderAudio(c.sonification);
-	})
+	});
 </script>
 
 <h2>Audio graph</h2>
 <div class="divider">
 	<section id="sonification-editor">
 		<h3 class="sr-only">Audio graph specification</h3>
-		<MonacoEditor 
-			containerId="audio-graph-json" 
-			code={codeStore} 
+		<MonacoEditor
+			containerId="audio-graph-json"
+			code={codeStore}
 			onchange={(d) => {
 				CurrentData.update((c) => {
 					c.sonification = d;
 					return c;
 				});
-		}} />
+			}}
+		/>
 	</section>
 	<section id="sonification-viewer">
 		<div id="player-wrap">
@@ -151,9 +153,9 @@
 				{#if queue?.queue}
 					<ul>
 						{#each queue.queue || [] as item, i}
-							<li class={playAt == i ? 'active' : ''}>
+							<li class={playAt == i ? "active" : ""}>
 								<h4>
-									{i + 1}. {item.type.replace(/\-/gi, ' ')}
+									{i + 1}. {item.type.replace(/\-/gi, " ")}
 									<button
 										on:click={() => {
 											audio?.queue?.play(i, i + 1);
@@ -165,20 +167,24 @@
 										}}>Play from this</button
 									>
 								</h4>
-								{#if item.type === 'text'}
+								{#if item.type === "text"}
 									<p>
-										(<span class="sr-only">Speech rate: </span>{item.speechRate}x)
+										(<span class="sr-only"
+											>Speech rate:
+										</span>{item.speechRate}x)
 										<span class="sr-only">Speech text: </span>{item.text.speech}
 									</p>
-								{:else if item.type === 'tone'}
-									<p style="padding-bottom: 0.25rem;">Instrument: {item.instrument_type}</p>
+								{:else if item.type === "tone"}
+									<p style="padding-bottom: 0.25rem;">
+										Instrument: {item.instrument_type}
+									</p>
 									<div class="stream-tab">
 										<table>
 											<thead>
 												<tr>
 													<th>#</th>
 													{#each tone_columns as key}
-														{#if key !== 'type'}
+														{#if key !== "type"}
 															<th>{key}</th>
 														{/if}
 													{/each}
@@ -188,11 +194,19 @@
 												<tr>
 													<th>1</th>
 													{#each tone_columns as key}
-														{#if key !== 'type'}
-															{#if key === 'tap'}
-																<td>{item[key] === undefined ? '-' : item[key].patternString}</td>
+														{#if key !== "type"}
+															{#if key === "tap"}
+																<td
+																	>{item[key] === undefined
+																		? "-"
+																		: item[key].patternString}</td
+																>
 															{:else}
-																<td>{item[key] === undefined ? '-' : item[key]}</td>
+																<td
+																	>{item[key] === undefined
+																		? "-"
+																		: item[key]}</td
+																>
 															{/if}
 														{/if}
 													{/each}
@@ -200,10 +214,14 @@
 											</tbody>
 										</table>
 									</div>
-								{:else if item.type === 'tone-series' || item.type === 'tone-speech-series'}
-									<p style="padding-bottom: 0.25rem;">Instrument: {item.instrument_type}</p>
+								{:else if item.type === "tone-series" || item.type === "tone-speech-series"}
+									<p style="padding-bottom: 0.25rem;">
+										Instrument: {item.instrument_type}
+									</p>
 									{#if item.config.tick}
-										<p style="padding-bottom: 0.25rem;">Tick: {item.config.tick.name}</p>
+										<p style="padding-bottom: 0.25rem;">
+											Tick: {item.config.tick.name}
+										</p>
 									{/if}
 									<div class="stream-tab">
 										<table>
@@ -211,7 +229,7 @@
 												<tr>
 													<th>#</th>
 													{#each tone_columns2 as key}
-														{#if key !== 'type'}
+														{#if key !== "type"}
 															<th>{key}</th>
 														{/if}
 													{/each}
@@ -222,11 +240,19 @@
 													<tr>
 														<th>{j}</th>
 														{#each tone_columns2 as key}
-															{#if key !== 'type'}
-																{#if key === 'tap'}
-																	<td>{tone[key] === undefined ? '-' : tone[key].patternString}</td>
+															{#if key !== "type"}
+																{#if key === "tap"}
+																	<td
+																		>{tone[key] === undefined
+																			? "-"
+																			: tone[key].patternString}</td
+																	>
 																{:else}
-																	<td>{tone[key] === undefined ? '-' : tone[key]}</td>
+																	<td
+																		>{tone[key] === undefined
+																			? "-"
+																			: tone[key]}</td
+																	>
 																{/if}
 															{/if}
 														{/each}
@@ -235,7 +261,7 @@
 											</tbody>
 										</table>
 									</div>
-								{:else if item.type === 'tone-overlay-series'}
+								{:else if item.type === "tone-overlay-series"}
 									<div class="overlays">
 										{#each item.overlays as overlay, k}
 											<div>
@@ -245,7 +271,7 @@
 														<tr>
 															<th>#</th>
 															{#each tone_columns2 as key}
-																{#if key !== 'type'}
+																{#if key !== "type"}
 																	<th>{key}</th>
 																{/if}
 															{/each}
@@ -256,12 +282,19 @@
 															<tr>
 																<th>{j}</th>
 																{#each tone_columns2 as key}
-																	{#if key !== 'type'}
-																		{#if key === 'tap'}
-																			<td>{tone[key] === undefined ? '-' : tone[key].patternString}</td
+																	{#if key !== "type"}
+																		{#if key === "tap"}
+																			<td
+																				>{tone[key] === undefined
+																					? "-"
+																					: tone[key].patternString}</td
 																			>
 																		{:else}
-																			<td>{tone[key] === undefined ? '-' : tone[key]}</td>
+																			<td
+																				>{tone[key] === undefined
+																					? "-"
+																					: tone[key]}</td
+																			>
 																		{/if}
 																	{/if}
 																{/each}
@@ -272,9 +305,10 @@
 											</div>
 										{/each}
 									</div>
-								{:else if item.type === 'pause'}
+								{:else if item.type === "pause"}
 									<p>
-										<span class="sr-only">Pause duration: </span>{item.duration} seconds
+										<span class="sr-only">Pause duration: </span>{item.duration}
+										seconds
 									</p>
 								{/if}
 							</li>
@@ -337,7 +371,7 @@
 	}
 	#player {
 		padding: 0.5rem;
-		border-bottom:  1px solid #dddddd;
+		border-bottom: 1px solid #dddddd;
 	}
 	#tone-graph-wrap {
 		display: block;

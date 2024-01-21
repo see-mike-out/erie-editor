@@ -1,7 +1,9 @@
 <script>
-	import Stream from "erie-web";
+	import * as Erie from "erie-web";
 	import SpecView from "../specView.svelte";
 	import Player from "../player.svelte";
+
+	const Stream = Erie.Stream;
 
 	let jsonSpec = {
 		description: `A histogram of Major Genre variable.`,

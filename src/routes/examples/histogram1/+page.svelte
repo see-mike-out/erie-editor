@@ -1,40 +1,43 @@
 <script>
-	import { Stream } from 'erie-web';
-	import SpecView from '../specView.svelte';
-	import Player from '../player.svelte';
+	import SpecView from "../specView.svelte";
+	import Player from "../player.svelte";
+	import * as Erie from "erie-web";
+
+	const Stream = Erie.Stream;
+	
 	let spec = {
-		description: 'A histogram of Miles_per_Gallon variable.',
+		description: "A histogram of Miles_per_Gallon variable.",
 		data: {
-			url: 'data/cars.json'
+			url: "data/cars.json",
 		},
 		tone: {
-			continued: false
+			continued: false,
 		},
 		encoding: {
 			time: {
-				field: 'Miles_per_Gallon',
-				type: 'quantitative',
+				field: "Miles_per_Gallon",
+				type: "quantitative",
 				bin: true,
 				scale: {
-					length: 4.5
+					length: 4.5,
 				},
 				tick: {
 					interval: 0.5,
-					playAtTime0: true
-				}
+					playAtTime0: true,
+				},
 			},
 			pitch: {
-				aggregate: 'count',
-				type: 'quantitative',
+				aggregate: "count",
+				type: "quantitative",
 				scale: {
-					polarity: 'positive',
-					maxDistinct: true
-				}
-			}
+					polarity: "positive",
+					maxDistinct: true,
+				},
+			},
 		},
 		config: {
-			speechRate: 1.75
-		}
+			speechRate: 1.75,
+		},
 	};
 
 	let jsCode = `let spec = new Erie.Stream();
@@ -53,21 +56,21 @@ spec.encoding.pitch.aggregate('count')
 spec.config.set('speechRate', 1.75);`;
 
 	let spec2 = new Stream();
-	spec2.description('A histogram of Miles_per_Gallon variable.');
-	spec2.data.set('url', 'data/cars.json');
+	spec2.description("A histogram of Miles_per_Gallon variable.");
+	spec2.data.set("url", "data/cars.json");
 	spec2.tone.continued(false);
 	spec2.encoding.time
-		.field('Miles_per_Gallon', 'quantitative')
+		.field("Miles_per_Gallon", "quantitative")
 		.bin(true)
-		.scale('length', 4.5)
-		.tick('interval', 0.5)
-		.tick('playAtTime0', true);
+		.scale("length", 4.5)
+		.tick("interval", 0.5)
+		.tick("playAtTime0", true);
 	spec2.encoding.pitch
-		.aggregate('count')
-		.type('quantitative')
-		.scale('polarity', 'positive')
-		.scale('maxDistinct', true);
-	spec2.config.set('speechRate', 1.75);
+		.aggregate("count")
+		.type("quantitative")
+		.scale("polarity", "positive")
+		.scale("maxDistinct", true);
+	spec2.config.set("speechRate", 1.75);
 	console.log(spec2.get());
 
 	let formalSpec = `Spec=(
@@ -110,15 +113,18 @@ spec.config.set('speechRate', 1.75);`;
 			This stream has the following sound mappings.
 		</p>
 		<p id="speech-s9o7re" style="speech-rate: 315;" data-web-speech-rate="1.75">
-			The Miles_per_Gallon (binned) is mapped to time. The duration of the stream is 4.5 seconds. A
-			tick sound is played every 0.5 seconds.
+			The Miles_per_Gallon (binned) is mapped to time. The duration of the
+			stream is 4.5 seconds. A tick sound is played every 0.5 seconds.
 		</p>
 		<p id="speech-696Ekf" style="speech-rate: 315;" data-web-speech-rate="1.75">
 			The Count is mapped to pitch. The minimum value 1 is mapped to
 		</p>
 		<section>
 			<audio id="audio-CHeFW6" controls>
-				<source src="/example_sounds/erie-rec-CHeFW6.webm" type="audio/webm;codecs=opus" />
+				<source
+					src="/example_sounds/erie-rec-CHeFW6.webm"
+					type="audio/webm;codecs=opus"
+				/>
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -127,18 +133,28 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-VexApf" controls>
-				<source src="/example_sounds/erie-rec-VexApf.webm" type="audio/webm;codecs=opus" />
+				<source
+					src="/example_sounds/erie-rec-VexApf.webm"
+					type="audio/webm;codecs=opus"
+				/>
 				Your browser does not support the audio element.
 			</audio>
 		</section>
-		<p id="speech-08jKca" style="speech-rate: 315;" data-web-speech-rate="1.75">Start playing.</p>
+		<p id="speech-08jKca" style="speech-rate: 315;" data-web-speech-rate="1.75">
+			Start playing.
+		</p>
 		<section>
 			<audio id="audio-qeUHuP" controls>
-				<source src="/example_sounds/erie-rec-qeUHuP.webm" type="audio/webm;codecs=opus" />
+				<source
+					src="/example_sounds/erie-rec-qeUHuP.webm"
+					type="audio/webm;codecs=opus"
+				/>
 				Your browser does not support the audio element.
 			</audio>
 		</section>
-		<p id="speech-cyLvNy" style="speech-rate: 315;" data-web-speech-rate="1.75">Finished.</p>
+		<p id="speech-cyLvNy" style="speech-rate: 315;" data-web-speech-rate="1.75">
+			Finished.
+		</p>
 	</Player>
 	<SpecView {spec} {jsCode} {formalSpec} />
 </main>

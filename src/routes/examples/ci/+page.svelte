@@ -1,8 +1,11 @@
 <script>
-	import { Stream } from 'erie-web';
-	import { Overlay } from 'erie-web';
 	import SpecView from '../specView.svelte';
 	import Player from '../player.svelte';
+	import * as Erie from "erie-web";
+
+	const Stream = Erie.Stream;
+	const Overlay = Erie.Overlay;
+
 
 	let data = [
 		{
