@@ -1,42 +1,43 @@
 <script>
-	import SpecView from '../specView.svelte';
-	import Player from '../player.svelte';
+	import SpecView from "../specView.svelte";
+	import Player from "../player.svelte";
 	import * as Erie from "erie-web";
-	
+	import { onMount } from "svelte";
+
 	const Stream = Erie.Stream;
 
 	let jsonSpec = {
-		description: 'A time-series of wounds variable over date.',
+		description: "A time-series of wounds variable over date.",
 		data: {
-			url: 'data/crimea.json'
+			url: "data/crimea.json",
 		},
 		tone: {
-			continued: false
+			continued: false,
 		},
 		encoding: {
 			time: {
-				field: 'date',
-				type: 'temporal',
+				field: "date",
+				type: "temporal",
 				scale: {
 					band: 0.15,
-					timing: 'absolute',
-					length: 3
+					timing: "absolute",
+					length: 3,
 				},
 				tick: {
-					interval: 0.5
-				}
+					interval: 0.5,
+				},
 			},
 			loudness: {
-				field: 'wounds',
-				type: 'quantitative',
+				field: "wounds",
+				type: "quantitative",
 				scale: {
-					range: [0, 1]
-				}
-			}
+					range: [0, 1],
+				},
+			},
 		},
 		config: {
-			speechRate: 1.75
-		}
+			speechRate: 1.75,
+		},
 	};
 
 	let jsCode = `let spec = new Erie.Stream();
@@ -52,20 +53,23 @@ spec.encoding.loudness.field('wounds', 'quantitative')
                       .scale('range', [0, 1]);
 spec.config.set('speechRate', 1.75);`;
 
-	let spec = new Stream();
-	spec.description('A time-series of wounds variable over date.');
-	spec.data.set('url', 'data/crimea.json');
-	spec.tone.continued(false);
-	spec.encoding.time
-		.field('date', 'temporal')
-		.scale('timing', 'absolute')
-		.scale('band', 0.15)
-		.scale('length', 3)
-		.tick('interval', 0.5);
-	spec.encoding.loudness.field('wounds', 'quantitative').scale('range', [0, 1]);
-	spec.config.set('speechRate', 1.75);
-	console.log(spec.get());
-
+	function runSpec() {
+		let spec = new Stream();
+		spec.description("A time-series of wounds variable over date.");
+		spec.data.set("url", "data/crimea.json");
+		spec.tone.continued(false);
+		spec.encoding.time
+			.field("date", "temporal")
+			.scale("timing", "absolute")
+			.scale("band", 0.15)
+			.scale("length", 3)
+			.tick("interval", 0.5);
+		spec.encoding.loudness
+			.field("wounds", "quantitative")
+			.scale("range", [0, 1]);
+		spec.config.set("speechRate", 1.75);
+		console.log(spec.get());
+	}
 	let formalSpec = `Spec=(
 	description='A time-series of wounds variable over date.',
 	data=(url='data/crimea.json'),
@@ -85,6 +89,10 @@ spec.config.set('speechRate', 1.75);`;
 	),
 	config=(speechRate=1.75)
 )`;
+
+	onMount(() => {
+		runSpec();
+	});
 </script>
 
 <svelte:head>
@@ -111,7 +119,10 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-dIr4hj" controls>
-				<source src="/example_sounds/erie-rec-dIr4hj.webm" type="audio/webm;codecs=opus" />
+				<source
+					src="/example_sounds/erie-rec-dIr4hj.webm"
+					type="audio/webm;codecs=opus"
+				/>
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -120,18 +131,28 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-gNHyRQ" controls>
-				<source src="/example_sounds/erie-rec-gNHyRQ.webm" type="audio/webm;codecs=opus" />
+				<source
+					src="/example_sounds/erie-rec-gNHyRQ.webm"
+					type="audio/webm;codecs=opus"
+				/>
 				Your browser does not support the audio element.
 			</audio>
 		</section>
-		<p id="speech-OLbxiy" style="speech-rate: 315;" data-web-speech-rate="1.75">Start playing.</p>
+		<p id="speech-OLbxiy" style="speech-rate: 315;" data-web-speech-rate="1.75">
+			Start playing.
+		</p>
 		<section>
 			<audio id="audio-d7DhKr" controls>
-				<source src="/example_sounds/erie-rec-d7DhKr.webm" type="audio/webm;codecs=opus" />
+				<source
+					src="/example_sounds/erie-rec-d7DhKr.webm"
+					type="audio/webm;codecs=opus"
+				/>
 				Your browser does not support the audio element.
 			</audio>
 		</section>
-		<p id="speech-USmRHp" style="speech-rate: 315;" data-web-speech-rate="1.75">Finished.</p>
+		<p id="speech-USmRHp" style="speech-rate: 315;" data-web-speech-rate="1.75">
+			Finished.
+		</p>
 	</Player>
 
 	<h2>Expression</h2>

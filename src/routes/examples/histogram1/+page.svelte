@@ -2,10 +2,10 @@
 	import SpecView from "../specView.svelte";
 	import Player from "../player.svelte";
 	import * as Erie from "erie-web";
-    import { onMount } from "svelte";
+	import { onMount } from "svelte";
 
 	const Stream = Erie.Stream;
-	
+
 	let spec = {
 		description: "A histogram of Miles_per_Gallon variable.",
 		data: {
@@ -56,24 +56,25 @@ spec.encoding.pitch.aggregate('count')
                    .scale('maxDistinct', true);
 spec.config.set('speechRate', 1.75);`;
 
-	let spec2 = new Stream();
-	spec2.description("A histogram of Miles_per_Gallon variable.");
-	spec2.data.set("url", "data/cars.json");
-	spec2.tone.continued(false);
-	spec2.encoding.time
-		.field("Miles_per_Gallon", "quantitative")
-		.bin(true)
-		.scale("length", 4.5)
-		.tick("interval", 0.5)
-		.tick("playAtTime0", true);
-	spec2.encoding.pitch
-		.aggregate("count")
-		.type("quantitative")
-		.scale("polarity", "positive")
-		.scale("maxDistinct", true);
-	spec2.config.set("speechRate", 1.75);
-	console.log(spec2.get());
-
+	function runSpec() {
+		let spec2 = new Stream();
+		spec2.description("A histogram of Miles_per_Gallon variable.");
+		spec2.data.set("url", "data/cars.json");
+		spec2.tone.continued(false);
+		spec2.encoding.time
+			.field("Miles_per_Gallon", "quantitative")
+			.bin(true)
+			.scale("length", 4.5)
+			.tick("interval", 0.5)
+			.tick("playAtTime0", true);
+		spec2.encoding.pitch
+			.aggregate("count")
+			.type("quantitative")
+			.scale("polarity", "positive")
+			.scale("maxDistinct", true);
+		spec2.config.set("speechRate", 1.75);
+		console.log(spec2.get());
+	}
 	let formalSpec = `Spec=(
 	description='A histogram of Miles_per_Gallon variable.',
 	data=(url='data/cars.json'),
@@ -95,6 +96,9 @@ spec.config.set('speechRate', 1.75);`;
 	),
 	config=(speechRate=1.75)
 )`;
+	onMount(() => {
+		runSpec();
+	});
 </script>
 
 <svelte:head>

@@ -2,12 +2,13 @@
 	import SpecView from "../specView.svelte";
 	import Player from "../player.svelte";
 	import * as Erie from "erie-web";
-	
+	import { onMount } from "svelte";
+
 	const Stream = Erie.Stream;
 	const Calculate = Erie.Calculate;
 	const Fold = Erie.Fold;
 	const Aggregate = Erie.Aggregate;
-	
+
 	let jsonSpec = {
 		description: "Mean and standard deviation of Miles_per_Gallon by Origin",
 		data: {
@@ -142,66 +143,69 @@ spec.encoding.repeat.field('Origin', 'nominal')
                     .scale('description', 'skip');
 spec.config.set('speechRate', 1.75);`;
 
-	let spec = new Stream();
-	spec.description("Mean and standard deviation of Miles_per_Gallon by Origin");
-	spec.data.set("url", "data/cars.json");
-	let aggregate = new Aggregate();
-	aggregate
-		.add("mean", "Miles_per_Gallon", "Miles_per_Gallon_mean")
-		.add("stdevp", "Miles_per_Gallon", "Miles_per_Gallon_stdevp")
-		.groupby(["Origin"]);
-	let lower = new Calculate(
-		"datum.Miles_per_Gallon_mean - datum.Miles_per_Gallon_stdevp",
-		"Miles_per_Gallon_lower",
-	);
-	let upper = new Calculate(
-		"datum.Miles_per_Gallon_mean + datum.Miles_per_Gallon_stdevp",
-		"Miles_per_Gallon_upper",
-	);
-	let fold = new Fold(
-		[
+	function runSpec() {
+		let spec = new Stream();
+		spec.description(
+			"Mean and standard deviation of Miles_per_Gallon by Origin",
+		);
+		spec.data.set("url", "data/cars.json");
+		let aggregate = new Aggregate();
+		aggregate
+			.add("mean", "Miles_per_Gallon", "Miles_per_Gallon_mean")
+			.add("stdevp", "Miles_per_Gallon", "Miles_per_Gallon_stdevp")
+			.groupby(["Origin"]);
+		let lower = new Calculate(
+			"datum.Miles_per_Gallon_mean - datum.Miles_per_Gallon_stdevp",
 			"Miles_per_Gallon_lower",
-			"Miles_per_Gallon_mean",
+		);
+		let upper = new Calculate(
+			"datum.Miles_per_Gallon_mean + datum.Miles_per_Gallon_stdevp",
 			"Miles_per_Gallon_upper",
-		],
-		"Origin",
-	);
-	fold.exclude(true).as(["measure", "statistics"]);
-	spec.transform.add(aggregate).add(lower).add(upper).add(fold);
-	spec.tone.type("default").continued(false);
-	spec.encoding.time
-		.field("measure", "nominal")
-		.scale("order", [
-			"Miles_per_Gallon_lower",
-			"Miles_per_Gallon_mean",
-			"Miles_per_Gallon_upper",
-		])
-		.scale("band", 0.5);
-	spec.encoding.pan
-		.field("statistics", "quantitative")
-		.scale("polarity", "positive")
-		.scale("maxDistinct", true)
-		.format(".4");
-	spec.encoding.pitch
-		.field("statistics", "quantitative")
-		.scale("polarity", "positive")
-		.scale("range", ["C2", "C5"])
-		.format(".4");
-	spec.encoding.timbre
-		.field("measure", "nominal")
-		.scale("domain", [
-			"Miles_per_Gallon_lower",
-			"Miles_per_Gallon_mean",
-			"Miles_per_Gallon_upper",
-		])
-		.scale("range", ["piano", "violin", "piano"]);
-	spec.encoding.repeat
-		.field("Origin", "nominal")
-		.speech(true)
-		.scale("description", "skip");
-	spec.config.set("speechRate", 1.75);
-	console.log(spec.get());
-
+		);
+		let fold = new Fold(
+			[
+				"Miles_per_Gallon_lower",
+				"Miles_per_Gallon_mean",
+				"Miles_per_Gallon_upper",
+			],
+			"Origin",
+		);
+		fold.exclude(true).as(["measure", "statistics"]);
+		spec.transform.add(aggregate).add(lower).add(upper).add(fold);
+		spec.tone.type("default").continued(false);
+		spec.encoding.time
+			.field("measure", "nominal")
+			.scale("order", [
+				"Miles_per_Gallon_lower",
+				"Miles_per_Gallon_mean",
+				"Miles_per_Gallon_upper",
+			])
+			.scale("band", 0.5);
+		spec.encoding.pan
+			.field("statistics", "quantitative")
+			.scale("polarity", "positive")
+			.scale("maxDistinct", true)
+			.format(".4");
+		spec.encoding.pitch
+			.field("statistics", "quantitative")
+			.scale("polarity", "positive")
+			.scale("range", ["C2", "C5"])
+			.format(".4");
+		spec.encoding.timbre
+			.field("measure", "nominal")
+			.scale("domain", [
+				"Miles_per_Gallon_lower",
+				"Miles_per_Gallon_mean",
+				"Miles_per_Gallon_upper",
+			])
+			.scale("range", ["piano", "violin", "piano"]);
+		spec.encoding.repeat
+			.field("Origin", "nominal")
+			.speech(true)
+			.scale("description", "skip");
+		spec.config.set("speechRate", 1.75);
+		console.log(spec.get());
+	}
 	let formalSpec = `Spec=(
 	description='A histogram of Major Genre variable.',
 	data=(url='data/movies.json'),
@@ -229,6 +233,9 @@ spec.config.set('speechRate', 1.75);`;
 	),
 	config=(speechRate=1.75)
 )`;
+	onMount(() => {
+		runSpec();
+	});
 </script>
 
 <svelte:head>

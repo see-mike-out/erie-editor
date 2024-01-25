@@ -2,7 +2,8 @@
 	import * as Erie from "erie-web";
 	import SpecView from "../specView.svelte";
 	import Player from "../player.svelte";
-	
+	import { onMount } from "svelte";
+
 	const Stream = Erie.Stream;
 	const SynthTone = Erie.SynthTone;
 
@@ -980,33 +981,35 @@ spec.encoding.modulation.field('residual', 'quantitative')
                    .format('.4');
 spec.config.set('speechRate', 1.75);`;
 
-	let spec = new Stream();
-	spec.description(
-		"The residuals of a linear regression model of Sepal Length on Petal Length.",
-	);
-	spec.data.set("values", data);
-	let fm1 = new SynthTone("Fm1");
-	fm1.type("FM");
-	spec.synth.add(fm1);
-	spec.tone.type("Fm1").continued(false);
-	spec.encoding.time
-		.field("SepalLength", "quantitative")
-		.scale("timing", "absolute")
-		.scale("length", 5)
-		.scale("band", 0.15)
-		.format(".4");
-	spec.encoding.pan
-		.field("residual", "quantitative")
-		.scale("domain", [-2.5, 0, 2.5])
-		.scale("range", [-1, 0, 1])
-		.format(".4");
-	spec.encoding.modulation
-		.field("residual", "quantitative")
-		.scale("domain", [-2.5, 0, 2.5])
-		.scale("range", [4, 0.001, 4])
-		.format(".4");
-	spec.config.set("speechRate", 1.75);
-	console.log(spec.get());
+	function runSpec() {
+		let spec = new Stream();
+		spec.description(
+			"The residuals of a linear regression model of Sepal Length on Petal Length.",
+		);
+		spec.data.set("values", data);
+		let fm1 = new SynthTone("Fm1");
+		fm1.type("FM");
+		spec.synth.add(fm1);
+		spec.tone.type("Fm1").continued(false);
+		spec.encoding.time
+			.field("SepalLength", "quantitative")
+			.scale("timing", "absolute")
+			.scale("length", 5)
+			.scale("band", 0.15)
+			.format(".4");
+		spec.encoding.pan
+			.field("residual", "quantitative")
+			.scale("domain", [-2.5, 0, 2.5])
+			.scale("range", [-1, 0, 1])
+			.format(".4");
+		spec.encoding.modulation
+			.field("residual", "quantitative")
+			.scale("domain", [-2.5, 0, 2.5])
+			.scale("range", [4, 0.001, 4])
+			.format(".4");
+		spec.config.set("speechRate", 1.75);
+		console.log(spec.get());
+	}
 
 	let formalSpec = `Spec=(
 	description='The residuals of a linear regression model of Sepal Length on Petal Length.',
@@ -1041,6 +1044,10 @@ spec.config.set('speechRate', 1.75);`;
 	),
 	config=(speechRate=1.75)
 )`;
+
+	onMount(() => {
+		runSpec();
+	});
 </script>
 
 <svelte:head>

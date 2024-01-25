@@ -2,10 +2,11 @@
 	import * as Erie from "erie-web";
 	import SpecView from "../specView.svelte";
 	import Player from "../player.svelte";
+	import { onMount } from "svelte";
 
 	const Stream = Erie.Stream;
 	const Density = Erie.Density;
-	
+
 	let jsonSpec = {
 		description:
 			"The kernel density estimation of body mass by species and island",
@@ -86,35 +87,38 @@ spec.encoding.repeat.field(['Species', 'Island'], 'nominal')
                     .speech(true)
                     .scale('description', 'skip');
 spec.config.set('speechRate', 1.75);`;
-	let spec = new Stream();
-	spec.description(
-		"The kernel density estimation of body mass by species and island",
-	);
-	spec.data.set("url", "data/penguins.json");
-	let density = new Density("Body Mass (g)");
-	density.groupby(["Species", "Island"]).extent([2500, 6500]);
-	spec.transform.add(density);
-	spec.tone.type("default").continued(true);
-	spec.encoding.time
-		.field("value", "quantitative")
-		.scale("length", 3)
-		.scale("title", "Body Mass value");
-	spec.encoding.pan
-		.field("value", "quantitative")
-		.scale("polarity", "positive")
-		.scale("title", "Body Mass value");
-	spec.encoding.pitch
-		.field("density", "quantitative")
-		.scale("polarity", "positive")
-		.scale("range", [0, 700])
-		.scale("title", "Kernel density")
-		.format(".4");
-	spec.encoding.repeat
-		.field(["Species", "Island"], "nominal")
-		.speech(true)
-		.scale("description", "skip");
-	spec.config.set("speechRate", 1.75);
-	console.log(spec.get());
+
+	function runSpec() {
+		let spec = new Stream();
+		spec.description(
+			"The kernel density estimation of body mass by species and island",
+		);
+		spec.data.set("url", "data/penguins.json");
+		let density = new Density("Body Mass (g)");
+		density.groupby(["Species", "Island"]).extent([2500, 6500]);
+		spec.transform.add(density);
+		spec.tone.type("default").continued(true);
+		spec.encoding.time
+			.field("value", "quantitative")
+			.scale("length", 3)
+			.scale("title", "Body Mass value");
+		spec.encoding.pan
+			.field("value", "quantitative")
+			.scale("polarity", "positive")
+			.scale("title", "Body Mass value");
+		spec.encoding.pitch
+			.field("density", "quantitative")
+			.scale("polarity", "positive")
+			.scale("range", [0, 700])
+			.scale("title", "Kernel density")
+			.format(".4");
+		spec.encoding.repeat
+			.field(["Species", "Island"], "nominal")
+			.speech(true)
+			.scale("description", "skip");
+		spec.config.set("speechRate", 1.75);
+		console.log(spec.get());
+	}
 
 	let formalSpec = `Spec=(
 	description='The kernel density estimation of body mass by species and island.',
@@ -152,6 +156,9 @@ spec.config.set('speechRate', 1.75);`;
 	),
 	config=(speechRate=1.75)
 )`;
+	onMount(() => {
+		runSpec();
+	});
 </script>
 
 <svelte:head>

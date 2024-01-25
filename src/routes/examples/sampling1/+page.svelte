@@ -1,8 +1,9 @@
 <script>
 	import * as Erie from "erie-web";
-	import SpecView from '../specView.svelte';
-	import Player from '../player.svelte';
-	
+	import SpecView from "../specView.svelte";
+	import Player from "../player.svelte";
+	import { onMount } from "svelte";
+
 	const Stream = Erie.Stream;
 	const Dataset = Erie.Dataset;
 	const Overlay = Erie.Overlay;
@@ -10,138 +11,138 @@
 
 	let animalData = [
 			{
-				animal: 'Cow',
-				value: 5
+				animal: "Cow",
+				value: 5,
 			},
 			{
-				animal: 'Bird',
-				value: 3
+				animal: "Bird",
+				value: 3,
 			},
 			{
-				animal: 'Dog',
-				value: 2
+				animal: "Dog",
+				value: 2,
 			},
 			{
-				animal: 'Cat',
-				value: 6
-			}
+				animal: "Cat",
+				value: 6,
+			},
 		],
 		backgroundData = [
 			{
-				duration: 2
-			}
+				duration: 2,
+			},
 		];
 	let jsonSpec = {
-		description: 'The value of animal.',
+		description: "The value of animal.",
 		datasets: [
 			{
-				name: 'data',
-				values: animalData
+				name: "data",
+				values: animalData,
 			},
 			{
-				name: 'background',
-				values: backgroundData
-			}
+				name: "background",
+				values: backgroundData,
+			},
 		],
 		sampling: [
 			{
-				name: 'cow',
+				name: "cow",
 				sample: {
-					mono: 'external_audio/cow.mp3'
-				}
+					mono: "external_audio/cow.mp3",
+				},
 			},
 			{
-				name: 'cat',
+				name: "cat",
 				sample: {
-					mono: 'external_audio/cat.mp3'
-				}
+					mono: "external_audio/cat.mp3",
+				},
 			},
 			{
-				name: 'dog',
+				name: "dog",
 				sample: {
-					mono: 'external_audio/dog.mp3'
-				}
+					mono: "external_audio/dog.mp3",
+				},
 			},
 			{
-				name: 'bird',
+				name: "bird",
 				sample: {
-					mono: 'external_audio/bird.mp3'
-				}
+					mono: "external_audio/bird.mp3",
+				},
 			},
 			{
-				name: 'rain',
+				name: "rain",
 				sample: {
-					mono: 'external_audio/rain.mp3'
-				}
-			}
+					mono: "external_audio/rain.mp3",
+				},
+			},
 		],
 		overlay: [
 			{
 				data: {
-					name: 'data'
+					name: "data",
 				},
 				tone: {
-					continued: false
+					continued: false,
 				},
 				encoding: {
 					time: {
-						field: 'animal',
-						type: 'nominal',
+						field: "animal",
+						type: "nominal",
 						scale: {
-							timing: 'simultaneous'
-						}
+							timing: "simultaneous",
+						},
 					},
 					tapSpeed: {
-						field: 'value',
-						type: 'quantitative',
+						field: "value",
+						type: "quantitative",
 						scale: {
 							domain: [2, 6],
 							range: [1, 3],
-							band: 2
-						}
+							band: 2,
+						},
 					},
 					timbre: {
-						field: 'animal',
-						type: 'nominal',
+						field: "animal",
+						type: "nominal",
 						scale: {
-							domain: ['Cow', 'Bird', 'Dog', 'Cat'],
-							range: ['cow', 'bird', 'dog', 'cat'],
-							description: 'skip'
-						}
-					}
-				}
+							domain: ["Cow", "Bird", "Dog", "Cat"],
+							range: ["cow", "bird", "dog", "cat"],
+							description: "skip",
+						},
+					},
+				},
 			},
 			{
 				data: {
-					name: 'background'
+					name: "background",
 				},
 				tone: {
-					type: 'rain',
-					continued: false
+					type: "rain",
+					continued: false,
 				},
 				encoding: {
 					time: {
-						value: 0
+						value: 0,
 					},
 					duration: {
-						field: 'duration',
+						field: "duration",
 						scale: {
-							times: 1
+							times: 1,
 						},
-						description: 'skip'
+						description: "skip",
 					},
 					loudness: {
-						value: 0.2
-					}
+						value: 0.2,
+					},
 				},
 				config: {
-					skipScaleSpeech: true
-				}
-			}
+					skipScaleSpeech: true,
+				},
+			},
 		],
 		config: {
-			speechRate: 1.75
-		}
+			speechRate: 1.75,
+		},
 	};
 
 	let jsCode = `let animalData = ${JSON.stringify(animalData)};
@@ -189,47 +190,60 @@ spec.sampling.add(cowSample)
              .add(rainSample);
 spec.config.set('speechRate', 1.75);`;
 
-	let animalDataset = new Dataset('animal');
-	animalDataset.set('values', animalData);
-	let backgroundDataset = new Dataset('background');
-	backgroundDataset.set('values', backgroundData);
+	function runSpec() {
+		let animalDataset = new Dataset("animal");
+		animalDataset.set("values", animalData);
+		let backgroundDataset = new Dataset("background");
+		backgroundDataset.set("values", backgroundData);
 
-	let animal = new Stream();
-	animal.data.set(animalDataset);
-	animal.tone.continued(false);
-	animal.encoding.time.field('animal', 'nominal').scale('timing', 'simultaneous');
-	animal.encoding.tapSpeed
-		.field('value', 'quantitative')
-		.scale('domain', [2, 6])
-		.scale('range', [1, 3])
-		.scale('band', 2);
-	animal.encoding.timbre
-		.field('animal', 'nominal')
-		.scale('domain', ['Cow', 'Bird', 'Dog', 'Cat'])
-		.scale('range', ['cow', 'bird', 'dog', 'cat'])
-		.scale('description', 'skip');
+		let animal = new Stream();
+		animal.data.set(animalDataset);
+		animal.tone.continued(false);
+		animal.encoding.time
+			.field("animal", "nominal")
+			.scale("timing", "simultaneous");
+		animal.encoding.tapSpeed
+			.field("value", "quantitative")
+			.scale("domain", [2, 6])
+			.scale("range", [1, 3])
+			.scale("band", 2);
+		animal.encoding.timbre
+			.field("animal", "nominal")
+			.scale("domain", ["Cow", "Bird", "Dog", "Cat"])
+			.scale("range", ["cow", "bird", "dog", "cat"])
+			.scale("description", "skip");
 
-	let background = new Stream();
-	background.data.set(backgroundDataset);
-	background.tone.continued(true);
-	background.encoding.time.value(0);
-	background.encoding.duration
-		.field('duration', 'quantitative')
-		.scale('description', 'skip')
-		.scale('times', 1);
-	background.encoding.loudness.value(0.2);
+		let background = new Stream();
+		background.data.set(backgroundDataset);
+		background.tone.continued(true);
+		background.encoding.time.value(0);
+		background.encoding.duration
+			.field("duration", "quantitative")
+			.scale("description", "skip")
+			.scale("times", 1);
+		background.encoding.loudness.value(0.2);
 
-	let spec = new Overlay(animal, background);
-  spec.description('The value of animal.');
-	spec.datasets.add(animalDataset).add(backgroundDataset);
-	let cowSample = new SampledTone('cow', { mono: 'external_audio/cow.mp3' });
-	let catSample = new SampledTone('cow', { mono: 'external_audio/cat.mp3' });
-	let dogSample = new SampledTone('cow', { mono: 'external_audio/dog.mp3' });
-	let birdSample = new SampledTone('cow', { mono: 'external_audio/bird.mp3' });
-	let rainSample = new SampledTone('cow', { mono: 'external_audio/rain.mp3' });
-	spec.sampling.add(cowSample).add(catSample).add(dogSample).add(birdSample).add(rainSample);
-	spec.config.set('speechRate', 1.75);
-	console.log(spec.get());
+		let spec = new Overlay(animal, background);
+		spec.description("The value of animal.");
+		spec.datasets.add(animalDataset).add(backgroundDataset);
+		let cowSample = new SampledTone("cow", { mono: "external_audio/cow.mp3" });
+		let catSample = new SampledTone("cow", { mono: "external_audio/cat.mp3" });
+		let dogSample = new SampledTone("cow", { mono: "external_audio/dog.mp3" });
+		let birdSample = new SampledTone("cow", {
+			mono: "external_audio/bird.mp3",
+		});
+		let rainSample = new SampledTone("cow", {
+			mono: "external_audio/rain.mp3",
+		});
+		spec.sampling
+			.add(cowSample)
+			.add(catSample)
+			.add(dogSample)
+			.add(birdSample)
+			.add(rainSample);
+		spec.config.set("speechRate", 1.75);
+		console.log(spec.get());
+	}
 
 	let formalSpec = `Spec=(
 	description='The value of animal.',
@@ -275,6 +289,9 @@ spec.config.set('speechRate', 1.75);`;
   )],
 	config=(speechRate=1.75)
 )`;
+	onMount(() => {
+		runSpec();
+	});
 </script>
 
 <svelte:head>
@@ -301,7 +318,10 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-MHdmBC" controls>
-				<source src="/example_sounds/erie-rec-MHdmBC.webm" type="audio/webm;codecs=opus" />
+				<source
+					src="/example_sounds/erie-rec-MHdmBC.webm"
+					type="audio/webm;codecs=opus"
+				/>
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -310,18 +330,28 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-MAfLWN" controls>
-				<source src="/example_sounds/erie-rec-MAfLWN.webm" type="audio/webm;codecs=opus" />
+				<source
+					src="/example_sounds/erie-rec-MAfLWN.webm"
+					type="audio/webm;codecs=opus"
+				/>
 				Your browser does not support the audio element.
 			</audio>
 		</section>
-		<p id="speech-vIgCTE" style="speech-rate: 315;" data-web-speech-rate="1.75">Start playing.</p>
+		<p id="speech-vIgCTE" style="speech-rate: 315;" data-web-speech-rate="1.75">
+			Start playing.
+		</p>
 		<section>
 			<audio id="audio-DJmv9p" controls>
-				<source src="/example_sounds/erie-rec-DJmv9p.webm" type="audio/webm;codecs=opus" />
+				<source
+					src="/example_sounds/erie-rec-DJmv9p.webm"
+					type="audio/webm;codecs=opus"
+				/>
 				Your browser does not support the audio element.
 			</audio>
 		</section>
-		<p id="speech-UueDnQ" style="speech-rate: 315;" data-web-speech-rate="1.75">Finished.</p>
+		<p id="speech-UueDnQ" style="speech-rate: 315;" data-web-speech-rate="1.75">
+			Finished.
+		</p>
 	</Player>
 
 	<h2>Expression</h2>

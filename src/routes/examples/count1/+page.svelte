@@ -2,6 +2,7 @@
 	import * as Erie from "erie-web";
 	import SpecView from "../specView.svelte";
 	import Player from "../player.svelte";
+	import { onMount } from "svelte";
 
 	const Stream = Erie.Stream;
 
@@ -61,26 +62,28 @@ spec.encoding.speechBefore.field('Major Genre', 'nominal')
                           .scale('description', 'skip');
 spec.config.set('speechRate', 1.75);`;
 
-	let spec = new Stream();
-	spec.description("A histogram of Major Genre variable.");
-	spec.data.set("url", "data/movies.json");
-	spec.tone.type("clap");
-	spec.tone.continued(false);
-	spec.encoding.time
-		.field("Major Genre", "nominal")
-		.scale("timing", "relative");
-	spec.encoding.tapCount
-		.aggregate("count")
-		.type("quantitative")
-		.scale("range", [0, 20])
-		.scale("title", "Movie Count")
-		.scale("polarity", "positive")
-		.scale("maxDistinct", true);
-	spec.encoding.speechBefore
-		.field("Major Genre", "nominal")
-		.scale("description", "skip");
-	spec.config.set("speechRate", 1.75);
-	console.log(spec.get());
+	function runSpec() {
+		let spec = new Stream();
+		spec.description("A histogram of Major Genre variable.");
+		spec.data.set("url", "data/movies.json");
+		spec.tone.type("clap");
+		spec.tone.continued(false);
+		spec.encoding.time
+			.field("Major Genre", "nominal")
+			.scale("timing", "relative");
+		spec.encoding.tapCount
+			.aggregate("count")
+			.type("quantitative")
+			.scale("range", [0, 20])
+			.scale("title", "Movie Count")
+			.scale("polarity", "positive")
+			.scale("maxDistinct", true);
+		spec.encoding.speechBefore
+			.field("Major Genre", "nominal")
+			.scale("description", "skip");
+		spec.config.set("speechRate", 1.75);
+		console.log(spec.get());
+	}
 
 	let formalSpec = `Spec=(
 	description='A histogram of Major Genre variable.',
@@ -109,6 +112,9 @@ spec.config.set('speechRate', 1.75);`;
 	),
 	config=(speechRate=1.75)
 )`;
+	onMount(() => {
+		runSpec();
+	});
 </script>
 
 <svelte:head>
