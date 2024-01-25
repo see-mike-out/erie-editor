@@ -35,6 +35,7 @@
 		<a href="https://chromewebstore.google.com/detail/erie-recorder-for-chrome/efbafkmjeinnnkjlkipfmpcbglbjgedc" target="_blank">Recorder Extension (only for Chrome)</a>
 		<a href="https://github.com/see-mike-out/erie-web" target="_blank">GitHub</a>
 		<a href="https://see-mike-out.github.io/erie-documentation/" target="_blank">Documentation</a>
+		<a href="./paper/" target="_blank">Online interactive paper</a>
 	</nav>
 </header>
 <div class="main-frame">
