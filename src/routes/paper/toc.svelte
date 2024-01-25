@@ -106,7 +106,7 @@
     },
     { anchor: "compiler", index: "Section 6", name: "Compiler", level: 1 },
     {
-      anchor: "complier-preset",
+      anchor: "compiler-preset",
       index: "Section 6.1",
       name: "Supported Presets",
       level: 2,
