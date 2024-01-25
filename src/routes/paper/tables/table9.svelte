@@ -27,23 +27,3 @@
 {#if !collapse}
   <AudioTable9></AudioTable9>
 {/if}
-
-<style>
-  table {
-    border-collapse: collapse;
-    border: 1px solid #000;
-    color: #454545;
-  }
-  table.queue > tbody > tr:nth-child(2n + 1) {
-    background-color: rgba(0, 0, 0, 0.05);
-  }
-  table table {
-    border-collapse: collapse;
-    border: 0;
-    color: #454545;
-  }
-  td,
-  th {
-    padding: 0.15rem 0.25rem;
-  }
-</style>
