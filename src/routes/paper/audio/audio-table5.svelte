@@ -1,0 +1,51 @@
+<script>
+  import AudioSnippet from "../AudioSnippet.svelte";
+  let spec = {
+    description: "A histogram of Miles_per_Gallon variable.",
+    data: {
+      url: "../data/cars.json",
+    },
+    tone: {
+      continued: false,
+    },
+    encoding: {
+      time: {
+        field: "Miles_per_Gallon",
+        type: "quantitative",
+        bin: true,
+        scale: {
+          length: 4.5,
+        },
+        tick: {
+          interval: 0.5,
+          playAtTime0: true,
+        },
+      },
+      pitch: {
+        aggregate: "count",
+        type: "quantitative",
+        scale: {
+          polarity: "positive",
+          maxDistinct: true,
+        },
+      },
+      repeat: {
+        field: ["Origin", "Cylinders"],
+        by: ["sequence", "overlay"],
+        type: "nominal",
+        speech: true,
+        scale: {
+          description: "skip",
+        },
+      },
+    },
+    config: {
+      speechRate: 1.75,
+      skipDescription: true,
+      skipTitle: true,
+      skipScaleSpeech: true,
+    },
+  };
+</script>
+
+<AudioSnippet {spec} key="audio-table-5"></AudioSnippet>

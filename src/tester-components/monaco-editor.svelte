@@ -1,15 +1,15 @@
 <script>
-	import { onMount } from 'svelte';
-	import { browser } from '$app/environment';
-	import { writable } from 'svelte/store';
-  import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
-  import jsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker';
-  import tsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker';
+	import { onMount } from "svelte";
+	import { browser } from "$app/environment";
+	import { writable } from "svelte/store";
+	import editorWorker from "monaco-editor/esm/vs/editor/editor.worker?worker";
+	import jsonWorker from "monaco-editor/esm/vs/language/json/json.worker?worker";
+	import tsWorker from "monaco-editor/esm/vs/language/typescript/ts.worker?worker";
 
-	export let containerId = 'monaco-container',
-		code = writable('{}'),
-		language = 'json', 
-    onchange = (e) => {};
+	export let containerId = "monaco-container",
+		code = writable("{}"),
+		language = "json",
+		onchange = (e) => {};
 
 	let monaco, editor;
 
@@ -19,38 +19,38 @@
 				const getWorkerModule = (moduleUrl, label) => {
 					return new Worker(self.MonacoEnvironment.getWorkerUrl(moduleUrl), {
 						name: label,
-						type: 'module'
+						type: "module",
 					});
 				};
 
 				switch (label) {
-					case 'json':
-          return new jsonWorker();
-					case 'javascript':
-            return new tsWorker();
+					case "json":
+						return new jsonWorker();
+					case "javascript":
+						return new tsWorker();
 					default:
 						return new editorWorker();
 				}
-			}
+			},
 		};
 	}
 
-  let editorSpace;
+	let editorSpace;
 	onMount(async () => {
-		monaco = (await import('monaco-editor')).editor;
-    editorSpace = document.getElementById(containerId);
+		monaco = (await import("monaco-editor")).editor;
+		editorSpace = document.getElementById(containerId);
 		editor = monaco.create(document.getElementById(containerId), {
 			value: $code,
-			languages: [language],
-			automaticLayout: true
+			language,
+			automaticLayout: true,
 		});
-    editor.onDidChangeModelContent(() => {
-      onchange(editor.getValue());
-    });
-    code.subscribe((c) => {
-      editor.setValue(c);
-    });
+		editor.onDidChangeModelContent(() => {
+			onchange(editor.getValue());
+		});
+		code.subscribe((c) => {
+			editor.setValue(c);
+		});
 	});
 </script>
 
-<div id={containerId}  style="height: 100%;" />
+<div id={containerId} style="height: 100%; font-family: var(--monospace);" />
