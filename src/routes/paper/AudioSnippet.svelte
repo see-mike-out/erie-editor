@@ -38,7 +38,7 @@
         audio.prerender().then((q) => {
           queue = q;
         });
-        window.audioPlayer = audio;
+        // window.audioPlayer = audio;
       })
       .catch((e) => {
         specError = true;
