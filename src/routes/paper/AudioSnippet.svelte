@@ -267,7 +267,8 @@
                             {#each tone_columns2 as key}
                               {#if key !== "type"}
                                 {#if key === "tap"}
-                                  <td>{tidyNumber(tone[key]?.patternString)}</td>
+                                  <td>{tidyNumber(tone[key]?.patternString)}</td
+                                  >
                                 {:else}
                                   <td>{tidyNumber(tone[key])}</td>
                                 {/if}
@@ -342,13 +343,10 @@
     border: 1px solid #ddd;
     font-family: initial !important;
   }
+
   .sonification-editor {
     width: 50%;
     height: 100%;
-  }
-
-  .sonification-editor :global(*) {
-    font-family: var(--monospace);
   }
   .sonification-viewer {
     width: 50%;
@@ -356,6 +354,31 @@
     border-left: 1px solid #dddddd;
     overflow-y: scroll;
     padding: 0;
+  }
+
+  @media screen and (max-width: 750px) {
+    .divider {
+      height: 90vh;
+      display: block;
+      margin: 0.5rem 0 2rem 0;
+    }
+
+    .sonification-editor {
+      width: 100%;
+      height: 50%;
+    }
+    .sonification-viewer {
+      width: 100%;
+      height: 50%;
+      border-top: 1px solid #dddddd;
+      border-left: 0;
+      overflow-y: scroll;
+      padding: 0;
+    }
+  }
+
+  .sonification-editor :global(*) {
+    font-family: var(--monospace);
   }
   .player-wrap {
     display: block;
