@@ -12,6 +12,7 @@
       >10.1145/3613904.3642442</a
     ><br />This is an online preprint of ACM CHI 2024 publication.
     <br />To best experience this interative article, make sure your Chrome, FireFox, or Safari is up-to-date.
+    <br />Some sonifications may need earphones for stereo panning.
   </p>
 </section>
 <section id="abstract" aria-roledescription="Abstract">
