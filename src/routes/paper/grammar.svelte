@@ -142,7 +142,7 @@
     mapped to a higher pitch (<em>positive</em> <em>polarity</em>), using the
     below expression:
     <Math
-    displayMode={false}
+      displayMode={false}
       content={`\\textit{pitch} = \\{ \\textit{field} = \\textit{\\textcolor{gray}{count}},  \\textit{type}=\\textit{\\textcolor{gray}{quantitative}}, \\\\
       \\textit{scale}=\\{ \\textit{domain}=\textcolor{gray}{[0, 100]}, \\textit{range}=\\textit{\\textcolor{gray}{[220, 660]}}, \\textit{polarity}=\\textit{\\textcolor{gray}{positive}} \\} \\}`}
     ></Math>
@@ -287,10 +287,13 @@
     <em>temporal</em>, reflecting common data types. For a continuous tone, a
     <em>ramp</em>ing method specifies how to smoothly transition one auditory
     value to another. The transition can be abrupt (no-ramping), linear, and
-    exponential. A developer may need to emphasize only certain data values by
-    making them sound differently instead of encoding every data value using a
-    scale. In the walkthrough, suppose that the developer wants to indicate bins
-    with more than 80 counts using a louder sound. Supporting such cases, a
+    exponential.
+  </p>
+  <p aria-roledescription="paragraph">
+    A developer may need to emphasize certain data values by making them sound
+    different instead of encoding every data value using a scale. In the
+    walkthrough, suppose that the developer wants to indicate bins with more
+    than 80 counts using a louder sound. Supporting such cases, a
     <em>c</em>onditioned <em>channel</em> has a <em>condition</em> list for
     special values and a <em>value</em> for the others.
     <Math
@@ -452,7 +455,8 @@
     is formalized as a list of streams, and A <em>sequence</em> is defined as an
     ordered list of streams and overlays:
     <Math
-    displayMode={false} content={`\\textit{overlay} := [ \\textit{stream} ] \\\\
+      displayMode={false}
+      content={`\\textit{overlay} := [ \\textit{stream} ] \\\\
 \\textit{sequence} := [\\textit{stream} ~|~ \\textit{overlay} ]`}
     ></Math>
     Note that a nested sequence, <Eq math={`[{sequence}, {sequence}]`}></Eq>, is

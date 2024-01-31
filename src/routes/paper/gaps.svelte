@@ -38,9 +38,9 @@
     and <a href="https://www.loudnumbers.net/" target="_blank">Loud Numbers</a>.
     We include the list of the sonification tutorials and designs we collected
     in Supplementary Material. We tagged sonification tutorials and designs in
-    terms of software or libraries used, functionalities of codes written by the
-    creators (e.g.,scale function, audio environment settings), and output
-    formats (e.g.,replicability of designs, file formats). Overall, this
+    terms of software or libraries used, functionality of code written by the
+    creators (e.g., scale functions, audio environment settings), and output
+    formats (e.g., replicability of designs, file formats). Overall, this
     preliminary survey identified that
     <strong
       >developers currently rely on ad-hoc approaches due to the lack of
@@ -57,17 +57,16 @@
     auditory values like pitch notes or frequencies, volumes, and time durations.
     That is, developers still need to define scale functions that convert data values
     to auditory values, requiring an understanding of physical properties of different
-    auditory variables. For example,
+    auditory variables. For example, the
     <a
       href="https://medium.com/@astromattrusso/sonification-101-how-to-convert-data-into-music-with-python-71a6dd67751c"
       target="_blank">"Sonification 101" tutorial</a
     >
-    by Matt Russo introduces how to map data points to notes with a four-step procedure.
-    First, a developer normalizes the data point into a range from 0 to 1, and then
-    multiples a scalar to keep them in a certain range. Third, the developer specifies
-    a list of notes to map data points to. Last, the developer writes a for loop
-    to convert each data point to the corresponding note from the list. On the other
-    hand,
+    describes how to map data points to notes with a four-step procedure. First,
+    a developer normalizes the data point into a range from 0 to 1, then multiples
+    by a scalar to keep them in a certain range. Third, the developer specifies a
+    list of notes to map data points to. Last, they write a for loop to convert each
+    data point to the corresponding note from the list. On the other hand,
     <a
       href="https://propolis.io/articles/making-animated-dataviz-sonification.html"
       target="_blank">a tutorial by Propolis</a
