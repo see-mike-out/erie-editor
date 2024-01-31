@@ -4,6 +4,11 @@
 	import * as Erie from "erie-web";
 	import { browser } from "$app/environment";
 	import { onMount } from "svelte";
+	import Sound1 from "$lib/example_sounds/erie-rec-gXQSuk.webm";
+	import Sound2 from "$lib/example_sounds/erie-rec-KwsDDT.webm";
+	import Sound3 from "$lib/example_sounds/erie-rec-wGLRMQ.webm";
+	import Sound4 from "$lib/example_sounds/erie-rec-zwf8Kt.webm";
+	import Sound5 from "$lib/example_sounds/erie-rec-mQ3263.webm"
 
 	const Stream = Erie.Stream;
 	const Filter = Erie.Filter;
@@ -939,7 +944,7 @@ spec.description('Exoplanet WASP-96 b infrared transmission data');`;
 	<title>Erie Sonification Recording for Exoplanet WASP-96b</title>
 </svelte:head>
 <main>
-	<h1>Erie Sonification Recording for Interval Example</h1>
+	<h1>Erie Sonification Recording for Exoplanet WASP-96b Example</h1>
 	<h2>Sonification</h2>
 	<p>
 		Note: This is a replication of <a
@@ -967,10 +972,7 @@ spec.description('Exoplanet WASP-96 b infrared transmission data');`;
 		</p>
 		<section>
 			<audio id="audio-gXQSuk" controls>
-				<source
-					src="/example_sounds/erie-rec-gXQSuk.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound1} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -979,10 +981,7 @@ spec.description('Exoplanet WASP-96 b infrared transmission data');`;
 		</p>
 		<section>
 			<audio id="audio-KwsDDT" controls>
-				<source
-					src="/example_sounds/erie-rec-KwsDDT.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound2} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -992,10 +991,7 @@ spec.description('Exoplanet WASP-96 b infrared transmission data');`;
 		</p>
 		<section>
 			<audio id="audio-wGLRMQ" controls>
-				<source
-					src="/example_sounds/erie-rec-wGLRMQ.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound3} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -1004,10 +1000,7 @@ spec.description('Exoplanet WASP-96 b infrared transmission data');`;
 		</p>
 		<section>
 			<audio id="audio-zwf8Kt" controls>
-				<source
-					src="/example_sounds/erie-rec-zwf8Kt.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound4} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -1017,7 +1010,7 @@ spec.description('Exoplanet WASP-96 b infrared transmission data');`;
 		<section>
 			<audio id="audio-mQ3263" controls>
 				<source
-					src="/example_sounds/erie-rec-mQ3263.webm"
+					src={Sound5}
 					type="audio/webm;codecs=opus"
 				/>
 				Your browser does not support the audio element.

@@ -4,6 +4,10 @@
 	import * as Erie from "erie-web";
 	import { onMount } from "svelte";
 
+	import Sound_wIbQQk from "$lib/example_sounds/erie-rec-wIbQQk.webm";
+	import Sound_FVlYPl from "$lib/example_sounds/erie-rec-FVlYPl.webm";
+	import Sound_sAupoE from "$lib/example_sounds/erie-rec-sAupoE.webm";
+	
 	const Stream = Erie.Stream;
 	const Overlay = Erie.Overlay;
 
@@ -450,10 +454,7 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-wIbQQk" controls>
-				<source
-					src="/example_sounds/erie-rec-wIbQQk.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_wIbQQk} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -463,10 +464,7 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-FVlYPl" controls>
-				<source
-					src="/example_sounds/erie-rec-FVlYPl.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_FVlYPl} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -475,10 +473,7 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-sAupoE" controls>
-				<source
-					src="/example_sounds/erie-rec-sAupoE.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_sAupoE} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>

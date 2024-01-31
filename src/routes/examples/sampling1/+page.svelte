@@ -3,6 +3,9 @@
 	import SpecView from "../specView.svelte";
 	import Player from "../player.svelte";
 	import { onMount } from "svelte";
+	import Sound_MHdmBC from "$lib/example_sounds/erie-rec-MHdmBC.webm";
+	import Sound_MAfLWN from "$lib/example_sounds/erie-rec-MAfLWN.webm";
+	import Sound_DJmv9p from "$lib/example_sounds/erie-rec-DJmv9p.webm";
 
 	const Stream = Erie.Stream;
 	const Dataset = Erie.Dataset;
@@ -318,10 +321,7 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-MHdmBC" controls>
-				<source
-					src="/example_sounds/erie-rec-MHdmBC.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_MHdmBC} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -330,10 +330,7 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-MAfLWN" controls>
-				<source
-					src="/example_sounds/erie-rec-MAfLWN.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_MAfLWN} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -342,10 +339,7 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-DJmv9p" controls>
-				<source
-					src="/example_sounds/erie-rec-DJmv9p.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_DJmv9p} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>

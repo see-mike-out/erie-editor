@@ -3,6 +3,9 @@
 	import Player from "../player.svelte";
 	import * as Erie from "erie-web";
 	import { onMount } from "svelte";
+	import Sound_CHeFW6 from "$lib/example_sounds/erie-rec-CHeFW6.webm";
+	import Sound_VexApf from "$lib/example_sounds/erie-rec-VexApf.webm";
+	import Sound_qeUHuP from "$lib/example_sounds/erie-rec-qeUHuP.webm";
 
 	const Stream = Erie.Stream;
 
@@ -126,10 +129,7 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-CHeFW6" controls>
-				<source
-					src="/example_sounds/erie-rec-CHeFW6.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_CHeFW6} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -138,10 +138,7 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-VexApf" controls>
-				<source
-					src="/example_sounds/erie-rec-VexApf.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_VexApf} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -150,10 +147,7 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-qeUHuP" controls>
-				<source
-					src="/example_sounds/erie-rec-qeUHuP.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_qeUHuP} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>

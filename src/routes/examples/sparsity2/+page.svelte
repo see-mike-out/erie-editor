@@ -3,6 +3,15 @@
 	import Player from "../player.svelte";
 	import * as Erie from "erie-web";
 	import { onMount } from "svelte";
+	import Sound_OVyGPY from "$lib/example_sounds/erie-rec-OVyGPY.webm";
+	import Sound_V5hTfW from "$lib/example_sounds/erie-rec-V5hTfW.webm";
+	import Sound_yjHuu7 from "$lib/example_sounds/erie-rec-yjHuu7.webm";
+	import Sound_p5VGS8 from "$lib/example_sounds/erie-rec-p5VGS8.webm";
+	import Sound_F7e0lb from "$lib/example_sounds/erie-rec-F7e0lb.webm";
+	import Sound_0kY1bY from "$lib/example_sounds/erie-rec-0kY1bY.webm";
+	import Sound_ifgmU0 from "$lib/example_sounds/erie-rec-ifgmU0.webm";
+	import Sound_siNbnC from "$lib/example_sounds/erie-rec-siNbnC.webm";
+	import Sound_SVUmpF from "$lib/example_sounds/erie-rec-SVUmpF.webm";
 
 	const Stream = Erie.Stream;
 
@@ -174,10 +183,7 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-OVyGPY" controls>
-				<source
-					src="/example_sounds/erie-rec-OVyGPY.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_OVyGPY} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -186,10 +192,7 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-V5hTfW" controls>
-				<source
-					src="/example_sounds/erie-rec-V5hTfW.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_V5hTfW} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -198,10 +201,7 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-yjHuu7" controls>
-				<source
-					src="/example_sounds/erie-rec-yjHuu7.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_yjHuu7} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -210,10 +210,7 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-p5VGS8" controls>
-				<source
-					src="/example_sounds/erie-rec-p5VGS8.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_p5VGS8} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -230,10 +227,7 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-F7e0lb" controls>
-				<source
-					src="/example_sounds/erie-rec-F7e0lb.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_F7e0lb} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -247,10 +241,7 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-0kY1bY" controls>
-				<source
-					src="/example_sounds/erie-rec-0kY1bY.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_0kY1bY} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -264,10 +255,7 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-ifgmU0" controls>
-				<source
-					src="/example_sounds/erie-rec-ifgmU0.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_ifgmU0} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -281,10 +269,7 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-siNbnC" controls>
-				<source
-					src="/example_sounds/erie-rec-siNbnC.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_siNbnC} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -298,10 +283,7 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-SVUmpF" controls>
-				<source
-					src="/example_sounds/erie-rec-SVUmpF.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_SVUmpF} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>

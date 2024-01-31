@@ -4,6 +4,23 @@
 	import * as Erie from "erie-web";
 	import { onMount } from "svelte";
 
+	import Sound_OtqLt0 from "$lib/example_sounds/erie-rec-OtqLt0.webm";
+	import Sound_VJTNVm from "$lib/example_sounds/erie-rec-VJTNVm.webm";
+	import Sound_K8uw3J from "$lib/example_sounds/erie-rec-K8uw3J.webm";
+	import Sound_bpDflu from "$lib/example_sounds/erie-rec-bpDflu.webm";
+	import Sound_MNG9JN from "$lib/example_sounds/erie-rec-MNG9JN.webm";
+	import Sound_d34ECm from "$lib/example_sounds/erie-rec-d34ECm.webm";
+	import Sound_6R6ght from "$lib/example_sounds/erie-rec-6R6ght.webm";
+	import Sound_TfG5pM from "$lib/example_sounds/erie-rec-TfG5pM.webm";
+	import Sound_u32Vm4 from "$lib/example_sounds/erie-rec-u32Vm4.webm";
+	import Sound_UN2fqr from "$lib/example_sounds/erie-rec-UN2fqr.webm";
+	import Sound_MvhP1c from "$lib/example_sounds/erie-rec-MvhP1c.webm";
+	import Sound_ijxVS4 from "$lib/example_sounds/erie-rec-ijxVS4.webm";
+	import Sound_1wqPZ4 from "$lib/example_sounds/erie-rec-1wqPZ4.webm";
+	import Sound_knj6ot from "$lib/example_sounds/erie-rec-knj6ot.webm";
+	import Sound_khEt2F from "$lib/example_sounds/erie-rec-khEt2F.webm";
+	import Sound_N8upyL from "$lib/example_sounds/erie-rec-N8upyL.webm";
+
 	const Stream = Erie.Stream;
 	const Calculate = Erie.Calculate;
 	const Fold = Erie.Fold;
@@ -265,10 +282,7 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-OtqLt0" controls>
-				<source
-					src="/example_sounds/erie-rec-OtqLt0.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_OtqLt0} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -277,10 +291,7 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-VJTNVm" controls>
-				<source
-					src="/example_sounds/erie-rec-VJTNVm.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_VJTNVm} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -289,10 +300,7 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-K8uw3J" controls>
-				<source
-					src="/example_sounds/erie-rec-K8uw3J.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_K8uw3J} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -301,10 +309,7 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-bpDflu" controls>
-				<source
-					src="/example_sounds/erie-rec-bpDflu.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_bpDflu} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -313,10 +318,7 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-MNG9JN" controls>
-				<source
-					src="/example_sounds/erie-rec-MNG9JN.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_MNG9JN} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -325,10 +327,7 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-d34ECm" controls>
-				<source
-					src="/example_sounds/erie-rec-d34ECm.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_d34ECm} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -337,10 +336,7 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-6R6ght" controls>
-				<source
-					src="/example_sounds/erie-rec-6R6ght.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_6R6ght} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -352,28 +348,19 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-TfG5pM" controls>
-				<source
-					src="/example_sounds/erie-rec-TfG5pM.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_TfG5pM} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
 		<section>
 			<audio id="audio-u32Vm4" controls>
-				<source
-					src="/example_sounds/erie-rec-u32Vm4.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_u32Vm4} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
 		<section>
 			<audio id="audio-UN2fqr" controls>
-				<source
-					src="/example_sounds/erie-rec-UN2fqr.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_UN2fqr} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -385,28 +372,19 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-MvhP1c" controls>
-				<source
-					src="/example_sounds/erie-rec-MvhP1c.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_MvhP1c} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
 		<section>
 			<audio id="audio-ijxVS4" controls>
-				<source
-					src="/example_sounds/erie-rec-ijxVS4.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_ijxVS4} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
 		<section>
 			<audio id="audio-1wqPZ4" controls>
-				<source
-					src="/example_sounds/erie-rec-1wqPZ4.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_1wqPZ4} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
@@ -418,28 +396,19 @@ spec.config.set('speechRate', 1.75);`;
 		</p>
 		<section>
 			<audio id="audio-knj6ot" controls>
-				<source
-					src="/example_sounds/erie-rec-knj6ot.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_knj6ot} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
 		<section>
 			<audio id="audio-khEt2F" controls>
-				<source
-					src="/example_sounds/erie-rec-khEt2F.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_khEt2F} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>
 		<section>
 			<audio id="audio-N8upyL" controls>
-				<source
-					src="/example_sounds/erie-rec-N8upyL.webm"
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound_N8upyL} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>

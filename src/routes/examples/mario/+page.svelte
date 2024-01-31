@@ -3,6 +3,7 @@
 	import SpecView from "../specView.svelte";
 	import Player from "../player.svelte";
 	import { onMount } from "svelte";
+	import Sound_XRI3Yk from "$lib/example_sounds/erie-rec-XRI3Yk.webm";
 
 	const Stream = Erie.Stream;
 
@@ -348,7 +349,7 @@ spec.config.set('skipScaleSpeech', true);`;
 		<section>
 			<audio id="audio-XRI3Yk" controls>
 				<source
-					src="/example_sounds/erie-rec-XRI3Yk.webm"
+					src={Sound_XRI3Yk}
 					type="audio/webm;codecs=opus"
 				/>
 				Your browser does not support the audio element.
