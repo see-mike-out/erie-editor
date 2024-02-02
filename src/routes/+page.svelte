@@ -5,9 +5,7 @@
 	import { loadSpecs, CurrentData, showVis, setShowVis } from "../storage";
 	import SonificationView from "../tester-components/sonification-view.svelte";
 	import * as Erie from "erie-web";
-	
 	const readyRecording = Erie.readyRecording;
-	
 
 	let showExampleTab = true;
 	function toggleExampleTab() {
@@ -32,9 +30,15 @@
 				toggleExampleTab();
 			}}>{!showExampleTab ? "See examples" : "Hide examples"}</button
 		>
-		<a href="https://chromewebstore.google.com/detail/erie-recorder-for-chrome/efbafkmjeinnnkjlkipfmpcbglbjgedc" target="_blank">Recorder Extension (only for Chrome)</a>
-		<a href="https://github.com/see-mike-out/erie-web" target="_blank">GitHub</a>
-		<a href="https://see-mike-out.github.io/erie-documentation/" target="_blank">Documentation</a>
+		<a
+			href="https://chromewebstore.google.com/detail/erie-recorder-for-chrome/efbafkmjeinnnkjlkipfmpcbglbjgedc"
+			target="_blank">Recorder Extension (only for Chrome)</a
+		>
+		<a href="https://github.com/see-mike-out/erie-web" target="_blank">GitHub</a
+		>
+		<a href="https://see-mike-out.github.io/erie-documentation/" target="_blank"
+			>Documentation</a
+		>
 		<a href="./paper/" target="_blank">Online interactive paper</a>
 	</nav>
 </header>
@@ -137,5 +141,9 @@
 		height: 2rem;
 		border-bottom: 1px solid #dddddd;
 		line-height: 100%;
+	}
+	:global(.erie-note-hl) {
+		outline: 3px solid #ff006a;
+		outline-offset: 3px;
 	}
 </style>

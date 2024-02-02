@@ -1,15 +1,22 @@
 <script>
-	import { writable } from 'svelte/store';
-	import { CurrentData, ExampleCase, getStringed, tryParse } from '../storage';
-	import MonacoEditor from './monaco-editor.svelte';
-	import { onMount } from 'svelte';
-	import { renderVLChart } from '../chart-control/run-vega';
+	import { writable } from "svelte/store";
+	import { CurrentData, ExampleCase, getStringed, tryParse } from "../storage";
+	import MonacoEditor from "./monaco-editor.svelte";
+	import { onMount } from "svelte";
+	import { renderVLChart } from "../chart-control/run-vega";
+	import { browser } from "$app/environment";
+	import {
+		dehighlightAll,
+		highlightVLChartByDatum,
+		preparseVLChartForHighlight,
+	} from "../chart-control/highlight-mark";
 
 	export let closer = () => {};
-	let content = '',
+	let content = "",
 		codeStore = writable();
-	const pl = '#visualization-viewer .chart-area';
+	const pl = "#visualization-viewer .chart-area";
 	let visError = false;
+	let ppChart;
 	function renderVis() {
 		visError = false;
 		if (document.querySelector(pl)) {
@@ -21,6 +28,7 @@
 			renderVLChart(pl, parsed, {})
 				.then((result) => {
 					visError = false;
+					ppChart = preparseVLChartForHighlight(pl);
 				})
 				.catch((e) => {
 					visError = true;
@@ -39,6 +47,15 @@
 				renderVis();
 			}
 		});
+
+		if (browser) {
+			document.body.addEventListener("erieOnNotePlay", (e) => {
+				highlightVLChartByDatum(ppChart, e.detail.note.__datum);
+			});
+			document.body.addEventListener("erieOnFinishTone", (e) => {
+				dehighlightAll(ppChart);
+			});
+		}
 	});
 	CurrentData.subscribe((c) => {
 		renderVis();

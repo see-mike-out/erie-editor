@@ -4,12 +4,19 @@
   import MonacoEditor from "../../tester-components/monaco-editor.svelte";
   import * as Erie from "erie-web";
   import { writable } from "svelte/store";
+  import { renderVLChart } from "../../chart-control/run-vega";
+  import {
+    dehighlightAll,
+    highlightVLChartByDatum,
+    preparseVLChartForHighlight,
+  } from "../../chart-control/highlight-mark";
 
   const readyRecording = Erie.readyRecording;
   const compileAuidoGraph = Erie.compileAuidoGraph;
 
   export let spec = {},
-    key = "audio-snippet";
+    key = "audio-snippet",
+    visSpec;
 
   let codeStore = writable(),
     queue = [],
@@ -20,9 +27,6 @@
 
   function updatePlayAt() {
     playAt = audio?.queue?.playAt;
-  }
-  if (browser) {
-    document.body.addEventListener("erieOnStatusChange", updatePlayAt);
   }
 
   function renderAudio(s) {
@@ -38,7 +42,6 @@
         audio.prerender().then((q) => {
           queue = q;
         });
-        // window.audioPlayer = audio;
       })
       .catch((e) => {
         specError = true;
@@ -105,6 +108,30 @@
     doUpdate.set(true);
   }
 
+  let visError = false;
+  let pl = "#vis-" + key + " .chart-area";
+  let ppChart;
+  function renderVis() {
+    visError = false;
+    if (document.querySelector(pl)) {
+      let parsed =
+        visSpec.constructor.name === "Object" ? visSpec : tryParse(visSpec);
+      if (!parsed) {
+        visError = true;
+        return;
+      }
+      renderVLChart(pl, parsed, {})
+        .then((result) => {
+          visError = false;
+          ppChart = preparseVLChartForHighlight(pl);
+        })
+        .catch((e) => {
+          visError = true;
+          console.warn(e);
+        });
+    }
+  }
+
   onMount(() => {
     readyRecording();
     codeStore.set(getStringed(spec));
@@ -115,6 +142,20 @@
         renderAudio($codeStore);
       }
     });
+    renderVis();
+
+    if (browser) {
+      document.body.addEventListener("erieOnStatusChange", updatePlayAt);
+      document.body.addEventListener("erieOnNotePlay", (e) => {
+        if (ppChart) highlightVLChartByDatum(ppChart, e.detail.note.__datum);
+      });
+      document.body.addEventListener("erieOnNoteStop", (e) => {
+        if (ppChart) highlightVLChartByDatum(ppChart, e.detail.note.__datum, true);
+      });
+      document.body.addEventListener("erieOnFinishTone", (e) => {
+        if (ppChart) dehighlightAll(ppChart);
+      });
+    }
   });
 
   function tidyNumber(v) {
@@ -332,13 +373,24 @@
       </div>
     </div>
   </section>
+  <section class="visualization-viewer" id={"vis-" + key}>
+    <h3>Visualization</h3>
+    {#if visSpec}
+      <div>
+        <div class="chart-area"></div>
+      </div>
+    {:else}
+      <p>Visualization not provided.</p>
+    {/if}
+  </section>
 </div>
 
 <style>
   .divider {
-    height: 50vh;
+    height: 90vh;
     min-height: 300px;
     display: flex;
+    flex-wrap: wrap;
     margin: 0.5rem 0 2rem 0;
     border: 1px solid #ddd;
     font-family: initial !important;
@@ -346,14 +398,22 @@
 
   .sonification-editor {
     width: 50%;
-    height: 100%;
+    height: 50%;
   }
   .sonification-viewer {
     width: 50%;
-    height: 100%;
+    height: 50%;
     border-left: 1px solid #dddddd;
     overflow-y: scroll;
     padding: 0;
+  }
+  .visualization-viewer {
+    width: 100%;
+    height: 50%;
+    border-left: 1px solid #dddddd;
+    overflow-y: scroll;
+    padding: 0;
+    background-color: #f0f0f0;
   }
 
   @media screen and (max-width: 750px) {
@@ -375,6 +435,14 @@
       overflow-y: scroll;
       padding: 0;
     }
+    .visualization-viewer {
+      width: 100%;
+      height: 50%;
+      border-top: 1px solid #dddddd;
+      border-left: 0;
+      overflow-y: scroll;
+      padding: 0;
+    }
   }
 
   .sonification-editor :global(*) {
@@ -388,10 +456,11 @@
     background-color: white;
     z-index: 10;
   }
-  .sonification-viewer h3 {
+  h3 {
     padding: 0.5rem 0.5rem 0 0.5rem;
     margin: 0;
     font-size: 1rem;
+    line-height: 100%;
   }
   .player {
     padding: 0.5rem;
@@ -403,7 +472,7 @@
   }
   .tone-graph-wrap h3 {
     position: sticky;
-    top: 70px;
+    top: 66px;
     background-color: white;
     z-index: 7;
     border-bottom: 1px solid #ddd;
@@ -411,7 +480,7 @@
   }
   .tone-graph h4 {
     position: sticky;
-    top: 92px;
+    top: 96px;
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
     background-color: white;
@@ -486,4 +555,27 @@
     width: 100%;
     overflow-x: scroll;
   }
+  .visualization-viewer h3 {
+    position: sticky;
+    top: 0;
+    padding-bottom: 0.5rem;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+  }
+  .visualization-viewer p {
+    padding: 0.5rem;
+  }
+  .visualization-viewer > div {
+    width: fit-content;
+    border: 1px solid #dddddd;
+    background-color: white;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+  }
+	:global(.erie-note-hl) {
+		outline: 3px solid #ff006a;
+		outline-offset: 3px;
+	}
 </style>

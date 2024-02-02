@@ -8,15 +8,21 @@ export const ExHistogram1 = {
     data: {
       url: data_url
     },
+    transform: [{
+      bin: true, field: x_field, as: [x_field + "__bin", x_field + "__bin_end"]
+    }],
     layer: [
       {
-        mark: { type: "bar" },
+        mark: { type: "bar", stroke: "white" },
         encoding: {
           x: {
-            field: x_field,
-            bin: true,
+            field: x_field + "__bin",
             type: x_type,
             axis: { title: x_field + " (bin)" }
+          },
+          x2: {
+            field: x_field + "__bin_end",
+            type: x_type
           },
           y: {
             aggregate: 'count',

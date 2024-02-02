@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { cites, makeRefAuthorName } from "./cites";
+  let collapse = false;
   let citations = [];
   onMount(() => {
     citations = Object.keys(cites)
@@ -17,30 +18,39 @@
 <section id="references" aria-roledescription="Reference list">
   <h2 aria-roledescription="section title">
     <a class="anchor" name="references" href="#references">References</a>
+    <button
+      class="collapse-button"
+      aria-roledescription="Collapse button"
+      on:click={() => {
+        collapse = !collapse;
+      }}>{!collapse ? "Collapse" : "Show"}</button
+    >
   </h2>
-  {#each citations as item, i}
-    <article aria-roledescription="citation item">
-      <a class="anchor" name={"c" + item.index} href={"#c" + i}
-        >[{item.index}]</a
-      >
-      {#if item.authorList && item.authorList.length > 0}{makeRefAuthorName(
-          item.authorList,
-        )}.{/if}
-      {#if item.year}({item.year}).{/if}
-      <em>{item.title}</em>.
-      {#if item.booktitle}{item.booktitle}{#if item.series}
-          &nbsp;({item.series}){/if}.{/if}
-      {#if item.publisher}{item.publisher}.{/if}
-      {#if item.doi}<a href={`https://doi.org/${item.doi}`} target="_blank"
-          >https://doi.org/{item.doi}</a
-        >.{/if}
-      {#if item.note}{@html item.note}.{/if}
-      {#if item.position?.length > 0}Cited at {#each item.position as pos, i}{i !=
-          0
-            ? ", "
-            : ""}<a href={"#" + pos}>{i + 1}</a>{/each}{/if}
-    </article>
-  {/each}
+  {#if !collapse}
+    {#each citations as item, i}
+      <article aria-roledescription="citation item">
+        <a class="anchor" name={"c" + item.index} href={"#c" + i}
+          >[{item.index}]</a
+        >
+        {#if item.authorList && item.authorList.length > 0}{makeRefAuthorName(
+            item.authorList,
+          )}.{/if}
+        {#if item.year}({item.year}).{/if}
+        <em>{item.title}</em>.
+        {#if item.booktitle}{item.booktitle}{#if item.series}
+            &nbsp;({item.series}){/if}.{/if}
+        {#if item.publisher}{item.publisher}.{/if}
+        {#if item.doi}<a href={`https://doi.org/${item.doi}`} target="_blank"
+            >https://doi.org/{item.doi}</a
+          >.{/if}
+        {#if item.note}{@html item.note}.{/if}
+        {#if item.position?.length > 0}Cited at {#each item.position as pos, i}{i !=
+            0
+              ? ", "
+              : ""}<a href={"#" + pos}>{i + 1}</a>{/each}{/if}
+      </article>
+    {/each}
+  {/if}
 </section>
 
 <style>

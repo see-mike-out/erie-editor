@@ -14,6 +14,7 @@
   import Conclusion from "./conclusion.svelte";
   import Appendix from "./appendix.svelte";
   import Toc from "./toc.svelte";
+    import Shortcuts from "./shortcuts.svelte";
   onMount(() => {});
 </script>
 
@@ -33,6 +34,7 @@
   </div>
   <main>
     <Abstract></Abstract>
+    <Shortcuts></Shortcuts>
     <Introduction></Introduction>
     <Background></Background>
     <Gaps></Gaps>
@@ -49,7 +51,7 @@
 </div>
 
 <div id="to-top">
-  <a href="#toc">Top</a>
+  <a href="#">Top</a>
 </div>
 
 <style>
@@ -132,5 +134,8 @@
     background-color: rgba(0, 0, 0, 0.05);
     padding: 0.5rem;
     border-radius: 0.25rem;
+  }
+  :global(section:last-of-type) {
+    margin-bottom: 2rem;
   }
 </style>
