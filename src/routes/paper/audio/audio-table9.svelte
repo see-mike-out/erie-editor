@@ -1,5 +1,6 @@
 <script>
   import AudioSnippet from "../AudioSnippet.svelte";
+
   let spec = {
     description:
       "The kernel density estimation of body mass by species and island",
@@ -56,6 +57,47 @@
       speechRate: 1.75,
     },
   };
+  let x_field = "Species",
+    y_field = "Body Mass (g)",
+    x_field_2 = "Island";
+  let visSpec = {
+    name: `The kernel density estimation of body mass by species and island`,
+    data: {
+      url: "../data/penguins.json",
+    },
+    transform: [
+      {
+        density: y_field,
+        groupby: [x_field, x_field_2],
+        extent: [2500, 6500],
+      },
+    ],
+    mark: { type: "area" },
+    encoding: {
+      x: {
+        field: "value",
+        type: "quantitative",
+        axis: { title: "Body Mass value" },
+      },
+      y: {
+        field: "density",
+        type: "quantitative",
+        axis: { title: "Kernel density" },
+      },
+      row: {
+        field: x_field,
+        type: "nominal",
+      },
+      column: {
+        field: x_field_2,
+        type: "nominal",
+      },
+      color: {
+        field: x_field,
+        type: "nominal",
+      },
+    },
+  };
 </script>
 
-<AudioSnippet {spec} key="audio-table-9"></AudioSnippet>
+<AudioSnippet {spec} key="audio-table-9" {visSpec}></AudioSnippet>

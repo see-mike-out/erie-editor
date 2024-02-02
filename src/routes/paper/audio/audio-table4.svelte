@@ -76,11 +76,11 @@
         type: x_type,
         axis: { title: "Count" },
       },
-      row: {
-        field: "Origin",
-      },
       column: {
         field: "Cylinders",
+      },
+      row: {
+        field: "Origin",
       },
     },
   };
