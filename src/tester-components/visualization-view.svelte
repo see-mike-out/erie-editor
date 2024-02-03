@@ -52,6 +52,9 @@
 			document.body.addEventListener("erieOnNotePlay", (e) => {
 				highlightVLChartByDatum(ppChart, e.detail.note.__datum);
 			});
+			document.body.addEventListener("erieOnNoteStop", (e) => {
+				highlightVLChartByDatum(ppChart, e.detail.note.__datum, true);
+			});
 			document.body.addEventListener("erieOnFinishTone", (e) => {
 				dehighlightAll(ppChart);
 			});
