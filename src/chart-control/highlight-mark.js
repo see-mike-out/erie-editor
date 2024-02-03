@@ -1,13 +1,6 @@
 const hlClassName = 'erie-note-hl';
 
 export function highlightVLChartByDatum(ppChart, d, dehl) {
-  // if (ppChart._current_) {
-  //   ppChart._current_.forEach((m) => {
-  //     if (m && m.classList) {
-  //       m.classList.remove(hlClassName);
-  //     }
-  //   });
-  // }
   let keys = {}
   uniqueArray(Object.keys(d || {})).forEach(p => { if (p !== 'Symbol(vega_id)') keys[p] = d[p] });
   let selected = ppChart.query(keys, 'mark');

@@ -147,10 +147,12 @@
     if (browser) {
       document.body.addEventListener("erieOnStatusChange", updatePlayAt);
       document.body.addEventListener("erieOnNotePlay", (e) => {
-        if (ppChart) highlightVLChartByDatum(ppChart, e.detail.note.__datum);
+        if (ppChart && e.detail.type === "tone")
+          highlightVLChartByDatum(ppChart, e.detail.note.__datum);
       });
       document.body.addEventListener("erieOnNoteStop", (e) => {
-        if (ppChart) highlightVLChartByDatum(ppChart, e.detail.note.__datum, true);
+        if (ppChart && e.detail.type === "tone")
+          highlightVLChartByDatum(ppChart, e.detail.note.__datum, true);
       });
       document.body.addEventListener("erieOnFinishTone", (e) => {
         if (ppChart) dehighlightAll(ppChart);
@@ -573,8 +575,8 @@
     border-radius: 0.5rem;
     margin: 0.5rem;
   }
-	:global(.erie-note-hl) {
-		outline: 3px solid #ff006a;
-		outline-offset: 3px;
-	}
+  :global(.erie-note-hl) {
+    outline: 3px solid #ff006a;
+    outline-offset: 3px;
+  }
 </style>
