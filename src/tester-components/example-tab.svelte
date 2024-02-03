@@ -117,4 +117,17 @@
 	.bi {
 		margin-left: 0.25rem;
 	}
+
+	@media screen and (max-width: 800px) {
+		.tab-container {
+			padding-top: 0;
+		}
+		h2 {
+			position: sticky;
+			top: 0;
+			background-color: white;
+			padding-top: 0.35rem;
+			padding-bottom: 0.35rem;
+		}
+	}
 </style>

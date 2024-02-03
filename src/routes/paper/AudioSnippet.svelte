@@ -418,18 +418,17 @@
 
   @media screen and (max-width: 750px) {
     .divider {
-      height: 90vh;
       display: block;
       margin: 0.5rem 0 2rem 0;
     }
 
     .sonification-editor {
       width: 100%;
-      height: 50%;
+      height: 30vh;
     }
     .sonification-viewer {
       width: 100%;
-      height: 50%;
+      height: 30vh;
       border-top: 1px solid #dddddd;
       border-left: 0;
       overflow-y: scroll;
@@ -437,7 +436,7 @@
     }
     .visualization-viewer {
       width: 100%;
-      height: 50%;
+      height: 30vh;
       border-top: 1px solid #dddddd;
       border-left: 0;
       overflow-y: scroll;

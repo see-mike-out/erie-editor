@@ -131,4 +131,22 @@
 		padding: 0.5rem;
 		border-radius: 0.5rem;
 	}
+	@media screen and (max-width: 750px) {
+		#visualization-editor,
+		#visualization-viewer {
+			width: 50%;
+			max-width: 50%;
+		}
+	}
+	@media screen and (max-width: 400px) {
+		.divider {
+			display: block;
+		}
+		#visualization-editor,
+		#visualization-viewer {
+			width: 100%;
+			max-width: 100%;
+			height: 50%;
+		}
+	}
 </style>

@@ -460,4 +460,22 @@
 		width: 100%;
 		overflow-x: scroll;
 	}
+	@media screen and (max-width: 750px) {
+		#sonification-editor,
+		#sonification-viewer {
+			width: 50%;
+			max-width: 50%;
+		}
+	}
+	@media screen and (max-width: 400px) {
+		.divider {
+			display: block;
+		}
+		#sonification-editor,
+		#sonification-viewer {
+			width: 100%;
+			max-width: 100%;
+			height: 50%;
+		}
+	}
 </style>

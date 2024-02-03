@@ -5,6 +5,7 @@
 	import { loadSpecs, CurrentData, showVis, setShowVis } from "../storage";
 	import SonificationView from "../tester-components/sonification-view.svelte";
 	import * as Erie from "erie-web";
+	import Icon from "../tester-components/icon.svelte";
 	const readyRecording = Erie.readyRecording;
 
 	let showExampleTab = true;
@@ -23,24 +24,57 @@
 </svelte:head>
 
 <header>
-	<h1>Erie Editor</h1>
-	<nav>
-		<button
-			on:click={() => {
-				toggleExampleTab();
-			}}>{!showExampleTab ? "See examples" : "Hide examples"}</button
-		>
-		<a
-			href="https://chromewebstore.google.com/detail/erie-recorder-for-chrome/efbafkmjeinnnkjlkipfmpcbglbjgedc"
-			target="_blank">Recorder Extension (only for Chrome)</a
-		>
-		<a href="https://github.com/see-mike-out/erie-web" target="_blank">GitHub</a
-		>
-		<a href="https://see-mike-out.github.io/erie-documentation/" target="_blank"
-			>Documentation</a
-		>
-		<a href="./paper/" target="_blank">Online interactive paper</a>
-	</nav>
+	<div class="header-wrap">
+		<h1>Erie Editor</h1>
+		<nav>
+			<button
+				on:click={() => {
+					toggleExampleTab();
+				}}>{!showExampleTab ? "See examples" : "Hide examples"}</button
+			>
+			<a
+				href="https://chromewebstore.google.com/detail/erie-recorder-for-chrome/efbafkmjeinnnkjlkipfmpcbglbjgedc"
+				target="_blank"
+				><Icon
+					name="record"
+					rightMargin="0.25rem"
+					width="12"
+					height="12"
+					alt="Recorder Extension (only for Chrome)"
+				></Icon><span class="mob-sr">Recorder Extension (only for Chrome)</span
+				></a
+			>
+			<a href="https://github.com/see-mike-out/erie-web" target="_blank"
+				><Icon
+					name="github"
+					rightMargin="0.25rem"
+					width="12"
+					height="12"
+					alt="GitHub"
+				></Icon><span class="mob-sr">GitHub</span></a
+			>
+			<a
+				href="https://see-mike-out.github.io/erie-documentation/"
+				target="_blank"
+				><Icon
+					name="documentation"
+					rightMargin="0.25rem"
+					width="12"
+					height="12"
+					alt="documentation"
+				></Icon><span class="mob-sr">Documentation</span></a
+			>
+			<a href="./paper/" target="_blank"
+				><Icon
+					name="paper"
+					rightMargin="0.25rem"
+					width="12"
+					height="12"
+					alt="online interactive paper"
+				></Icon><span class="mob-sr">Online interactive paper</span></a
+			>
+		</nav>
+	</div>
 </header>
 <div class="main-frame">
 	{#if showExampleTab}
@@ -86,6 +120,8 @@
 		line-height: 100%;
 		width: 100%;
 		margin: 0;
+	}
+	.header-wrap {
 		display: flex;
 	}
 	h1 {
@@ -135,6 +171,56 @@
 		min-height: 50%;
 		overflow-y: scroll;
 	}
+
+	/* responsive */
+	@media screen and (max-width: 800px) {
+		.main-frame {
+			display: block;
+		}
+		header {
+			width: 100%;
+			overflow-x: scroll;
+		}
+		.header-wrap {
+			width: fit-content;
+			max-width: 200%;
+		}
+		h1 {
+			width: 80px;
+		}
+		nav {
+			width: 730px;
+		}
+		.mob-sr {
+			font-size: 0;
+		}
+
+		#example-tab {
+			width: 100%;
+			height: 150px;
+			overflow-y: scroll;
+		}
+		#tester-area {
+			display: flex;
+			width: 100% !important;
+			border-top: 1px solid #ddd;
+		}
+		#tester-area.with-example {
+			width: 100%;
+			height: calc(100vh - 182px);
+		}
+		#tester-area.no-example {
+			width: 100%;
+			height: calc(100vh - 32px);
+		}
+		#sonification-tester,
+		#visualization-tester {
+			max-height: 100%;
+			min-height: 50%;
+			overflow-y: scroll;
+		}
+	}
+
 	h2 {
 		padding: 0.5rem;
 		margin: 0;
