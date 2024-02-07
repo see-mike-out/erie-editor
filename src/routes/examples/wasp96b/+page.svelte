@@ -8,7 +8,7 @@
 	import Sound2 from "$lib/example_sounds/erie-rec-KwsDDT.webm";
 	import Sound3 from "$lib/example_sounds/erie-rec-wGLRMQ.webm";
 	import Sound4 from "$lib/example_sounds/erie-rec-zwf8Kt.webm";
-	import Sound5 from "$lib/example_sounds/erie-rec-mQ3263.webm"
+	import Sound5 from "$lib/example_sounds/erie-rec-mQ3263.webm";
 
 	const Stream = Erie.Stream;
 	const Filter = Erie.Filter;
@@ -945,6 +945,12 @@ spec.description('Exoplanet WASP-96 b infrared transmission data');`;
 </svelte:head>
 <main>
 	<h1>Erie Sonification Recording for Exoplanet WASP-96b Example</h1>
+
+	<p>
+		<a href="../../?ex=wasp96b&showVis=true" target="_blank"
+			>Open in the online editor</a
+		>
+	</p>
 	<h2>Sonification</h2>
 	<p>
 		Note: This is a replication of <a
@@ -1009,10 +1015,7 @@ spec.description('Exoplanet WASP-96 b infrared transmission data');`;
 		</p>
 		<section>
 			<audio id="audio-mQ3263" controls>
-				<source
-					src={Sound5}
-					type="audio/webm;codecs=opus"
-				/>
+				<source src={Sound5} type="audio/webm;codecs=opus" />
 				Your browser does not support the audio element.
 			</audio>
 		</section>

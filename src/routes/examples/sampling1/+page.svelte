@@ -302,6 +302,9 @@ spec.config.set('speechRate', 1.75);`;
 </svelte:head>
 <main>
 	<h1>Erie Sonification Recording for Time Series Example</h1>
+	<p>
+		<a href="../../?ex=sampling-1&showVis=true" target="_blank">Open in the online editor</a>
+	</p>
 	<h2>Sonification</h2>
 	<Player>
 		<p id="speech-GgYd0z" style="speech-rate: 315;" data-web-speech-rate="1.75">

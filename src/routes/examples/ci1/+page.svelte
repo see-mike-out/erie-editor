@@ -7,7 +7,7 @@
 	import Sound_wIbQQk from "$lib/example_sounds/erie-rec-wIbQQk.webm";
 	import Sound_FVlYPl from "$lib/example_sounds/erie-rec-FVlYPl.webm";
 	import Sound_sAupoE from "$lib/example_sounds/erie-rec-sAupoE.webm";
-	
+
 	const Stream = Erie.Stream;
 	const Overlay = Erie.Overlay;
 
@@ -424,6 +424,11 @@ spec.config.set('speechRate', 1.75);`;
 </svelte:head>
 <main>
 	<h1>Erie Sonification Recording for Model CI Example</h1>
+	<p>
+		<a href="../../?ex=ci-1&showVis=true" target="_blank"
+			>Open in the online editor</a
+		>
+	</p>
 	<h2>Sonification</h2>
 	<Player>
 		<p id="speech-g8GFZ5" style="speech-rate: 315;" data-web-speech-rate="1.75">

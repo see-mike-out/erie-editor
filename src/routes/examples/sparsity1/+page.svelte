@@ -136,6 +136,9 @@ spec.config.set('speechRate', 1.75);`;
 </svelte:head>
 <main>
 	<h1>Erie Sonification Recording for Sparsity (simple) Example</h1>
+	<p>
+		<a href="../../?ex=sparsity-1&showVis=true" target="_blank">Open in the online editor</a>
+	</p>
 	<h2>Sonification</h2>
 	<Player>
 		<p id="speech-fjnbAJ" style="speech-rate: 315;" data-web-speech-rate="1.75">

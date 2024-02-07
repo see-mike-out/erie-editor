@@ -1995,6 +1995,9 @@ modelFit.config.set('speechRate', 1.75);`;
 </svelte:head>
 <main>
 	<h1>Erie Sonification Recording for Model Fit Example</h1>
+	<p>
+		<a href="../../?ex=regression-output-1&showVis=true" target="_blank">Open in the online editor</a>
+	</p>
 	<h2>Sonification</h2>
 	<Player>
 		<p id="speech-ACLT3R" style="speech-rate: 315;" data-web-speech-rate="1.75">
