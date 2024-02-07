@@ -19,6 +19,13 @@
 		}
 	}
 
+	function setURL(id) {
+		const url = new URL(location);
+		url.searchParams.set("ex", id);
+		url.searchParams.set("showVis", $showVis);
+		history.pushState({}, "", url);
+	}
+
 	let copied = false;
 </script>
 
@@ -32,11 +39,13 @@
 					class={$ExampleCase?.id === example.id ? "current" : ""}
 					on:click={() => {
 						setExample(example);
+						setURL(example.id);
 						copied = false;
 					}}
 					on:keypress={(event) => {
 						if (event.key === "Enter") {
 							setExample(example);
+							setURL(example.id);
 							copied = false;
 						}
 					}}>{example.name}</button
