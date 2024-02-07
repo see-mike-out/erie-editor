@@ -70,4 +70,42 @@
       d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"
     />
   </svg>
+{:else if name === "link"}
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    {width}
+    {height}
+    fill="currentColor"
+    class="bi bi-file-earmark-music"
+    viewBox="0 0 16 16"
+    style={`margin-right: ${rightMargin}`}
+    {alt}
+  >
+    <path
+      d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z"
+    />
+    <path
+      d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z"
+    />
+  </svg>
+{:else if name === "check"}
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    {width}
+    {height}
+    fill="currentColor"
+    class="bi bi-file-earmark-music"
+    viewBox="0 0 16 16"
+    style={`margin-right: ${rightMargin}`}
+    {alt}
+    ><path
+      d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"
+    />
+  </svg>
 {/if}
+
+<style>
+  svg {
+    vertical-align: text-bottom;
+  }
+</style>

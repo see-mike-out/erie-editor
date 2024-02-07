@@ -43,6 +43,8 @@ export const example_list = [
   ExMario
 ];
 
+export const example_ids = example_list.map((e) => e.id);
+
 export const replication_list = [
   // - Audio Narrative
   { title: "Audio Narrative", route: "examples/audioNarrative" },

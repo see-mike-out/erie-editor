@@ -2,19 +2,50 @@
 	import { onMount } from "svelte";
 	import ExampleTab from "../tester-components/example-tab.svelte";
 	import VisualizationView from "../tester-components/visualization-view.svelte";
-	import { loadSpecs, CurrentData, showVis, setShowVis } from "../storage";
+	import {
+		loadSpecs,
+		CurrentData,
+		showVis,
+		setShowVis,
+		setExample,
+	} from "../storage";
 	import SonificationView from "../tester-components/sonification-view.svelte";
 	import * as Erie from "erie-web";
 	import Icon from "../tester-components/icon.svelte";
+	import { browser } from "$app/environment";
+	import { example_ids, example_list } from "../examples/example_list";
 	const readyRecording = Erie.readyRecording;
 
 	let showExampleTab = true;
 	function toggleExampleTab() {
 		showExampleTab = !showExampleTab;
 	}
+	function findExample() {
+		let querySettings = {};
+		if (browser) {
+			let qs = window.location.search;
+			let query = new Map();
+			qs.replace("?", "")
+				.split("&")
+				.forEach((q) => query.set(...q.split("=")));
+			let exid = query.get("ex");
+			let exiloc = example_ids.indexOf(exid);
+
+			if (query.get("showVis") === "true") {
+				showVis.set(true);
+				querySettings.showVis = true;
+			}
+			if (exiloc >= 0) {
+				setExample(example_list[exiloc]);
+				querySettings.example = true;
+			}
+		}
+		return querySettings;
+	}
 	onMount(() => {
-		loadSpecs();
-		setShowVis();
+		let querySettings = findExample();
+		if (!querySettings.example) loadSpecs();
+		if (!querySettings.showVis) setShowVis();
 		readyRecording();
 	});
 </script>
@@ -38,8 +69,8 @@
 				><Icon
 					name="record"
 					rightMargin="0.25rem"
-					width="12"
-					height="12"
+					width="16"
+					height="16"
 					alt="Recorder Extension (only for Chrome)"
 				></Icon><span class="mob-sr">Recorder Extension (only for Chrome)</span
 				></a
@@ -48,8 +79,8 @@
 				><Icon
 					name="github"
 					rightMargin="0.25rem"
-					width="12"
-					height="12"
+					width="16"
+					height="16"
 					alt="GitHub"
 				></Icon><span class="mob-sr">GitHub</span></a
 			>
@@ -59,8 +90,8 @@
 				><Icon
 					name="documentation"
 					rightMargin="0.25rem"
-					width="12"
-					height="12"
+					width="16"
+					height="16"
 					alt="documentation"
 				></Icon><span class="mob-sr">Documentation</span></a
 			>
@@ -68,8 +99,8 @@
 				><Icon
 					name="paper"
 					rightMargin="0.25rem"
-					width="12"
-					height="12"
+					width="16"
+					height="16"
 					alt="online interactive paper"
 				></Icon><span class="mob-sr">Online interactive paper</span></a
 			>

@@ -1,6 +1,25 @@
 <script>
-	import { ExampleCase, setExample } from '../storage';
-	import { example_list, replication_list } from '../examples/example_list';
+	import { ExampleCase, setExample, showVis } from "../storage";
+	import { example_list, replication_list } from "../examples/example_list";
+	import Icon from "./icon.svelte";
+	import { browser } from "$app/environment";
+
+	function makePermURL(id) {
+		if (browser) {
+			return (
+				window.location.origin +
+				window.location.pathname +
+				"?ex=" +
+				id +
+				"&showVis=" +
+				$showVis
+			);
+		} else {
+			return "";
+		}
+	}
+
+	let copied = false;
 </script>
 
 <div class="tab-container">
@@ -10,20 +29,37 @@
 		{#each example_list as example}
 			<li>
 				<button
-					class={$ExampleCase?.id === example.id ? 'current' : ''}
+					class={$ExampleCase?.id === example.id ? "current" : ""}
 					on:click={() => {
 						setExample(example);
+						copied = false;
 					}}
 					on:keypress={(event) => {
-						if (event.key === 'Enter') {
+						if (event.key === "Enter") {
 							setExample(example);
+							copied = false;
 						}
 					}}>{example.name}</button
 				>
 				{#if example.route && $ExampleCase?.id === example.id}
 					<a class="btn-recording" href={example.route} target="_blank"
-						>Go to the pre-recorded version</a
+						><Icon name="record" width="12px"></Icon> Go to the pre-recorded version</a
 					>
+					<button
+						class={"btn-recording" + (copied ? " copied" : "")}
+						on:click={(e) => {
+							navigator.clipboard.writeText(makePermURL(example.id));
+							copied = true;
+						}}
+						on:keypress={(event) => {
+							if (event.key === "Enter") {
+								navigator.clipboard.writeText(makePermURL(example.id));
+								copied = true;
+							}
+						}}
+						><Icon name="link" width="12px"></Icon> Copy link to this example
+						{#if copied}<Icon name="check" width="12px"></Icon>{/if}
+					</button>
 				{/if}
 			</li>
 		{/each}
@@ -103,19 +139,25 @@
 		margin-top: 0.25rem;
 		border: 1px solid #dddddd;
 		border-radius: 0.5rem;
-		padding: 0.25rem 0.5rem;
+		padding: 0.35rem 0.5rem;
 		cursor: pointer;
 		background-color: #f0f0f0;
 		font-size: 0.85rem;
 		text-align: left;
 		text-decoration: none;
 		color: #212121;
+		line-height: 100%;
 	}
 	.btn-recording:hover {
 		background-color: #deebff;
 	}
 	.bi {
 		margin-left: 0.25rem;
+	}
+	.btn-recording.copied {
+		border: 1px solid #098716;
+		color: #098716;
+		background-color: #e4f5e5;
 	}
 
 	@media screen and (max-width: 800px) {
