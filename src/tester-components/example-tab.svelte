@@ -50,13 +50,15 @@
 						}
 					}}>{example.name}</button
 				>
-				{#if example.route && $ExampleCase?.id === example.id}
+				{#if $ExampleCase?.id === example.id}
 					{#if example.note}
 						<p class="note">{example.note}</p>
 					{/if}
-					<a class="btn-recording" href={example.route} target="_blank"
-						><Icon name="record" width="12px"></Icon> Go to the pre-recorded version</a
-					>
+					{#if example.route}
+						<a class="btn-recording" href={example.route} target="_blank"
+							><Icon name="record" width="12px"></Icon> Go to the pre-recorded version</a
+						>
+					{/if}
 					<button
 						class={"btn-recording" + (copied ? " copied" : "")}
 						on:click={(e) => {

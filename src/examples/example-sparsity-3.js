@@ -11,7 +11,7 @@ let data = [
 export const ExSparsity3 = {
   name: "Sparsity (simple)",
   id: "sparsity-3",
-  route: "examples/sparsity3",
+  // route: "examples/sparsity3",
   note: "Compare this example with 'Sparsity as density' example that maps sparsity values to represent the density.",
   visualization: {
     name: `The sparsity of ${x_field}.`,
