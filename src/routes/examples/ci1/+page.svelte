@@ -118,7 +118,7 @@
 
 	let jsonSpec = {
 		description:
-			"The prediction and confidence interval for a regreession model of Sepal Length on Petal Length.",
+			"The prediction and confidence envelope for a regreession model of Sepal Length on Petal Length.",
 		data: {
 			values: data,
 		},
@@ -173,7 +173,7 @@
 						field: "ci_lower",
 						type: "quantitative",
 						scale: {
-							title: "Confidence interval lower bound",
+							title: "Confidence envelope lower bound",
 						},
 						format: ".4",
 					},
@@ -181,7 +181,7 @@
 						field: "ci_lower",
 						type: "quantitative",
 						scale: {
-							title: "Confidence interval lower bound",
+							title: "Confidence envelope lower bound",
 						},
 						format: ".4",
 					},
@@ -205,7 +205,7 @@
 						field: "ci_upper",
 						type: "quantitative",
 						scale: {
-							title: "Confidence interval upper bound",
+							title: "Confidence envelope upper bound",
 						},
 						format: ".4",
 					},
@@ -213,7 +213,7 @@
 						field: "ci_upper",
 						type: "quantitative",
 						scale: {
-							title: "Confidence interval upper bound",
+							title: "Confidence envelope upper bound",
 						},
 						format: ".4",
 					},
@@ -250,10 +250,10 @@ lbSpec.tone.continued(true);
 lbSpec.encoding.time.field('SepalLength', 'quantitative')
                       .format('.4');
 lbSpec.encoding.pan.field('ci_lower', 'quantitative')
-                   .scale('title', 'Confidence interval lower bound')
+                   .scale('title', 'Confidence envelope lower bound')
                    .format('.4');
 lbSpec.encoding.pitch.field('ci_lower', 'quantitative')
-                   .scale('title', 'Confidence interval lower bound')
+                   .scale('title', 'Confidence envelope lower bound')
                      .format('.4');                     
 lbSpec.encoding.loudness.value(0.3);
 
@@ -263,10 +263,10 @@ ubSpec.tone.continued(true);
 ubSpec.encoding.time.field('SepalLength', 'quantitative')
                       .format('.4');
 ubSpec.encoding.pan.field('ci_upper', 'quantitative')
-                   .scale('title', 'Confidence interval upper bound')
+                   .scale('title', 'Confidence envelope upper bound')
                    .format('.4');
 ubSpec.encoding.pitch.field('ci_upper', 'quantitative')
-                   .scale('title', 'Confidence interval upper bound')
+                   .scale('title', 'Confidence envelope upper bound')
                      .format('.4');                     
 ubSpec.encoding.loudness.value(0.3);
 
@@ -300,11 +300,11 @@ spec.config.set('speechRate', 1.75);`;
 		lbSpec.encoding.time.field("SepalLength", "quantitative").format(".4");
 		lbSpec.encoding.pan
 			.field("ci_lower", "quantitative")
-			.scale("title", "Confidence interval lower bound")
+			.scale("title", "Confidence envelope lower bound")
 			.format(".4");
 		lbSpec.encoding.pitch
 			.field("ci_lower", "quantitative")
-			.scale("title", "Confidence interval lower bound")
+			.scale("title", "Confidence envelope lower bound")
 			.format(".4");
 		lbSpec.encoding.loudness.value(0.3);
 
@@ -314,17 +314,17 @@ spec.config.set('speechRate', 1.75);`;
 		ubSpec.encoding.time.field("SepalLength", "quantitative").format(".4");
 		ubSpec.encoding.pan
 			.field("ci_upper", "quantitative")
-			.scale("title", "Confidence interval upper bound")
+			.scale("title", "Confidence envelope upper bound")
 			.format(".4");
 		ubSpec.encoding.pitch
 			.field("ci_upper", "quantitative")
-			.scale("title", "Confidence interval upper bound")
+			.scale("title", "Confidence envelope upper bound")
 			.format(".4");
 		ubSpec.encoding.loudness.value(0.3);
 
 		let spec = new Overlay(predSpec, lbSpec, ubSpec);
 		spec.description(
-			"The prediction and confidence interval for a regreession model of Sepal Length on Petal Length.",
+			"The prediction and confidence envelope for a regreession model of Sepal Length on Petal Length.",
 		);
 		spec.data.set("values", data);
 		spec.config.set("speechRate", 1.75);
@@ -332,7 +332,7 @@ spec.config.set('speechRate', 1.75);`;
 	}
 
 	let formalSpec = `Spec=(
-	description=The prediction and confidence interval for a regreession model of Sepal Length on Petal Length.',
+	description=The prediction and confidence envelope for a regreession model of Sepal Length on Petal Length.',
 	data=(values=${JSON.stringify(data)}),
   overlay=[stream(
     name='Prediction',
@@ -377,13 +377,13 @@ spec.config.set('speechRate', 1.75);`;
       pan=(
         aggregate='ci_lower',
         type='quantitative',
-        scale=(title='Confidence interval lower bound'),
+        scale=(title='Confidence envelope lower bound'),
         format='.4'
       ),
       pitch=(
         aggregate='ci_lower',
         type='quantitative',
-        scale=(title='Confidence interval lower bound'),
+        scale=(title='Confidence envelope lower bound'),
         format='.4'
       )
     )
@@ -401,13 +401,13 @@ spec.config.set('speechRate', 1.75);`;
       pan=(
         aggregate='ci_upper',
         type='quantitative',
-        scale=(title='Confidence interval upper bound'),
+        scale=(title='Confidence envelope upper bound'),
         format='.4'
       ),
       pitch=(
         aggregate='ci_upper',
         type='quantitative',
-        scale=(title='Confidence interval upper bound'),
+        scale=(title='Confidence envelope upper bound'),
         format='.4'
       )
     )
@@ -420,10 +420,10 @@ spec.config.set('speechRate', 1.75);`;
 </script>
 
 <svelte:head>
-	<title>Erie Sonification Recording for Model CI Example</title>
+	<title>Erie Sonification Recording for Model Confidence Envelope Example</title>
 </svelte:head>
 <main>
-	<h1>Erie Sonification Recording for Model CI Example</h1>
+	<h1>Erie Sonification Recording for Model Confidence Envelope Example</h1>
 	<p>
 		<a href="../../?ex=ci-1&showVis=true" target="_blank"
 			>Open in the online editor</a

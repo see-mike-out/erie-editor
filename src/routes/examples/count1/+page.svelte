@@ -23,7 +23,7 @@
 	const Stream = Erie.Stream;
 
 	let jsonSpec = {
-		description: `A histogram of Major Genre variable.`,
+		description: `The frequency of Major Genre.`,
 		data: {
 			url: "data/movies.json",
 		},
@@ -62,7 +62,7 @@
 	};
 
 	let jsCode = `let spec = new Erie.Stream();
-spec.description('A histogram of Major Genre variable.');
+spec.description('The frequency of Major Genre.');
 spec.data.set('url', 'data/movies.json');
 spec.tone.type('clap');
 spec.tone.continued(false);
@@ -80,7 +80,7 @@ spec.config.set('speechRate', 1.75);`;
 
 	function runSpec() {
 		let spec = new Stream();
-		spec.description("A histogram of Major Genre variable.");
+		spec.description("The frequency of Major Genre.");
 		spec.data.set("url", "data/movies.json");
 		spec.tone.type("clap");
 		spec.tone.continued(false);
@@ -102,7 +102,7 @@ spec.config.set('speechRate', 1.75);`;
 	}
 
 	let formalSpec = `Spec=(
-	description='A histogram of Major Genre variable.',
+	description='The frequency of Major Genre.',
 	data=(url='data/movies.json'),
 	tone=(type='clap', continued=false),
 	encoding=(
@@ -147,7 +147,7 @@ spec.config.set('speechRate', 1.75);`;
 			To stop playing the sonification, press the X key.
 		</p>
 		<p id="speech-dikpC1" style="speech-rate: 315;" data-web-speech-rate="1.75">
-			A histogram of Major Genre variable.
+			The frequency of Major Genre.
 		</p>
 		<p id="speech-oYhb3m" style="speech-rate: 315;" data-web-speech-rate="1.75">
 			This stream has the following sound mappings.

@@ -10,7 +10,7 @@ let data = [
 ];
 
 export const ExSampling1 = {
-  name: "Sampling",
+  name: "Audio Sampling",
   id: "sampling-1",
   route: "examples/sampling1",
   visualization: {

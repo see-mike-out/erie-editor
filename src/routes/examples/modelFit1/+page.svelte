@@ -1996,7 +1996,7 @@ modelFit.config.set('speechRate', 1.75);`;
 <main>
 	<h1>Erie Sonification Recording for Model Fit Example</h1>
 	<p>
-		<a href="../../?ex=regression-output-1&showVis=true" target="_blank">Open in the online editor</a>
+		<a href="../../?ex=model-fit-1&showVis=true" target="_blank">Open in the online editor</a>
 	</p>
 	<h2>Sonification</h2>
 	<Player>

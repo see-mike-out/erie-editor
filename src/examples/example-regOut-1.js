@@ -1657,11 +1657,11 @@ let qq_data = [
 let x0 = 'SepalLength', x1 = 'normalQuantile', y = 'residual';
 
 export const ExRegOutput1 = {
-  name: "Regression Output",
-  id: "regression-output-1",
-  route: "examples/regressionOutput1",
+  name: "Model fit",
+  id: "model-fit-1",
+  route: "examples/modelFit1",
   visualization: {
-    name: `The output of a linear regression model of Sepal Length on Petal Length.`,
+    name: `The residuals of a linear regression model of Sepal Length on Petal Length.`,
     datasets: {
       qq: qq_data,
       residuals: residual_data

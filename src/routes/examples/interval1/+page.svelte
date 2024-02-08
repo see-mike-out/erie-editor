@@ -90,6 +90,7 @@
 				scale: {
 					polarity: "positive",
 					maxDistinct: true,
+					title: "value",
 				},
 				format: ".4",
 			},
@@ -99,6 +100,7 @@
 				scale: {
 					polarity: "positive",
 					range: ["C2", "C5"],
+					title: "value",
 				},
 				format: ".4",
 			},
@@ -147,10 +149,12 @@ spec.encoding.time.field('measure', 'nominal')
 spec.encoding.pan.field('statistics', 'quantitative')
                  .scale('polarity', 'positive')
                  .scale('maxDistinct', true)
+								 .scale('title', 'value')
                  .format('.4');
 spec.encoding.pitch.field('statistics', 'quantitative')
                    .scale('polarity', 'positive')
                    .scale('range', ['C2', 'C5'])
+				  				 .scale('title', 'value')
                    .format('.4');
 spec.encoding.timbre.field('measure', 'nominal')
                     .scale('domain', ['Miles_per_Gallon_lower', 'Miles_per_Gallon_mean', 'Miles_per_Gallon_upper'],)
@@ -202,11 +206,13 @@ spec.config.set('speechRate', 1.75);`;
 			.field("statistics", "quantitative")
 			.scale("polarity", "positive")
 			.scale("maxDistinct", true)
+			.scale("title", "value")
 			.format(".4");
 		spec.encoding.pitch
 			.field("statistics", "quantitative")
 			.scale("polarity", "positive")
 			.scale("range", ["C2", "C5"])
+			.scale("title", "value")
 			.format(".4");
 		spec.encoding.timbre
 			.field("measure", "nominal")
@@ -261,7 +267,9 @@ spec.config.set('speechRate', 1.75);`;
 <main>
 	<h1>Erie Sonification Recording for Interval Example</h1>
 	<p>
-		<a href="../../?ex=interval-1&showVis=true" target="_blank">Open in the online editor</a>
+		<a href="../../?ex=interval-1&showVis=true" target="_blank"
+			>Open in the online editor</a
+		>
 	</p>
 	<h2>Sonification</h2>
 	<Player>
@@ -281,7 +289,7 @@ spec.config.set('speechRate', 1.75);`;
 			The measure is mapped to time
 		</p>
 		<p id="speech-BRBDu3" style="speech-rate: 315;" data-web-speech-rate="1.75">
-			The statistics is mapped to pan. The minimum value 13.69 is mapped to
+			The value is mapped to pan. The minimum value 13.69 is mapped to
 		</p>
 		<section>
 			<audio id="audio-OtqLt0" controls>
@@ -299,7 +307,7 @@ spec.config.set('speechRate', 1.75);`;
 			</audio>
 		</section>
 		<p id="speech-527ZYQ" style="speech-rate: 315;" data-web-speech-rate="1.75">
-			The statistics is mapped to pitch. The minimum value 13.69 is mapped to
+			The value is mapped to pitch. The minimum value 13.69 is mapped to
 		</p>
 		<section>
 			<audio id="audio-K8uw3J" controls>

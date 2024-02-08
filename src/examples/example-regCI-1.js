@@ -106,11 +106,11 @@ let data = [
 let x_field = 'SepalLength', y0 = 'fit', y1 = 'ci_lower', y2 = 'ci_upper';
 
 export const ExCI1 = {
-  name: "Confidence Interval (regression)",
+  name: "Confidence Envelope (regression)",
   id: "ci-1",
   route: "examples/ci1",
   visualization: {
-    name: `The confidence interval of a model prediction of Sepal Length on Petal Length.`,
+    name: `The confidence envelope of a model prediction of Sepal Length on Petal Length.`,
     data: {
       values: data
     },
@@ -152,7 +152,7 @@ export const ExCI1 = {
     ]
   },
   sonification: {
-    description: `The prediction and confidence interval for a regreession model of Sepal Length on Petal Length.`,
+    description: `The prediction and confidence envelope for a regreession model of Sepal Length on Petal Length.`,
     data: {
       values: data
     },
@@ -204,13 +204,13 @@ export const ExCI1 = {
         pan: {
           field: y1,
           type: 'quantitative',
-          scale: { title: 'Confidence interval lower bound' },
+          scale: { title: 'Confidence envelope lower bound' },
           format: ".4"
         },
         pitch: {
           field: y1,
           type: 'quantitative',
-          scale: { title: 'Confidence interval lower bound' },
+          scale: { title: 'Confidence envelope lower bound' },
           format: ".4"
         },
         loudness: {
@@ -232,13 +232,13 @@ export const ExCI1 = {
         pan: {
           field: y2,
           type: 'quantitative',
-          scale: { title: 'Confidence interval upper bound' },
+          scale: { title: 'Confidence envelope upper bound' },
           format: ".4"
         },
         pitch: {
           field: y2,
           type: 'quantitative',
-          scale: { title: 'Confidence interval upper bound' },
+          scale: { title: 'Confidence envelope upper bound' },
           format: ".4"
         },
         loudness: {

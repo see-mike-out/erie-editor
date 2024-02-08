@@ -113,7 +113,8 @@ export const ExInterval1 = {
         type: "quantitative",
         scale: {
           polarity: "positive",
-          maxDistinct: true
+          maxDistinct: true,
+          title: "value"
         },
         format: ".4"
       },
@@ -122,7 +123,8 @@ export const ExInterval1 = {
         type: "quantitative",
         scale: {
           polarity: "positive",
-          range: ['C2', 'C5']
+          range: ['C2', 'C5'],
+          title: "value"
         },
         format: ".4"
       },

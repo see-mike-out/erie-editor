@@ -298,10 +298,10 @@ spec.config.set('speechRate', 1.75);`;
 </script>
 
 <svelte:head>
-	<title>Erie Sonification Recording for Time Series Example</title>
+	<title>Erie Sonification Recording for Audio Sampling Example</title>
 </svelte:head>
 <main>
-	<h1>Erie Sonification Recording for Time Series Example</h1>
+	<h1>Erie Sonification Recording for Audio Sampling Example</h1>
 	<p>
 		<a href="../../?ex=sampling-1&showVis=true" target="_blank">Open in the online editor</a>
 	</p>

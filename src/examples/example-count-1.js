@@ -1,10 +1,10 @@
 let data_url = 'data/movies.json', x_field = 'Major Genre', x_type = 'nominal', y_type = 'quantitative';
 export const ExCount1 = {
-  name: "Nominal Histogram (Counts)",
+  name: "Frequency",
   id: "count-1",
   route: "examples/count1",
   visualization: {
-    name: `A histogram of ${x_field} variable.`,
+    name: `The frequency of ${x_field}.`,
     data: {
       url: data_url
     },
@@ -27,7 +27,7 @@ export const ExCount1 = {
     ]
   },
   sonification: {
-    description: `A histogram of ${x_field} variable.`,
+    description: `The frequency of ${x_field}.`,
     data: {
       url: data_url
     },

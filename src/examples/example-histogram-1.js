@@ -1,6 +1,6 @@
 let data_url = 'data/cars.json', x_field = 'Miles_per_Gallon', x_type = 'quantitative'
 export const ExHistogram1 = {
-  name: "Quantitative Histogram",
+  name: "Histogram",
   id: "histogram-1",
   route: "examples/histogram1",
   visualization: {
