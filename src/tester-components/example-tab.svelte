@@ -51,6 +51,9 @@
 					}}>{example.name}</button
 				>
 				{#if example.route && $ExampleCase?.id === example.id}
+					{#if example.note}
+						<p class="note">{example.note}</p>
+					{/if}
 					<a class="btn-recording" href={example.route} target="_blank"
 						><Icon name="record" width="12px"></Icon> Go to the pre-recorded version</a
 					>
@@ -167,6 +170,13 @@
 		border: 1px solid #098716;
 		color: #098716;
 		background-color: #e4f5e5;
+	}
+
+	.note {
+		margin: 0;
+		padding: 0.35rem;
+		font-size: 0.85rem;
+		color: #666;
 	}
 
 	@media screen and (max-width: 800px) {

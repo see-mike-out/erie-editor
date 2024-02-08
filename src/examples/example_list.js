@@ -12,6 +12,7 @@ import { ExSparsity2 } from "./example-sparsity-2";
 import { ExSampling1 } from "./example-sampling-1";
 import { ExWasp96b } from "./example-wasp96b";
 import { ExMario } from "./example-super-mario";
+import { ExSparsity3 } from "./example-sparsity-3";
 
 export const example_list = [
   // to be published (needs testings)
@@ -21,6 +22,7 @@ export const example_list = [
   ExCount1,
   // - Sparsity (time-simultaneous/tap-speed/sampling)
   ExSparsity1,
+  ExSparsity3,
   ExSparsity2,
   // - Regression CI (time+pan/pitch/overlay)
   ExCI1,

@@ -12,6 +12,7 @@ export const ExSparsity2 = {
   name: "Sparsity and Length",
   id: "sparsity-2",
   route: "examples/sparsity2",
+  note: "This example demonstrates how to use polarity in an audio scale and how to combine tap-speed and tap-count channels. 'Sparsity (simple)' example diretly maps the degree of sparsity.",
   visualization: {
     name: `The sparsity and length of data tables.`,
     data: {
@@ -35,7 +36,9 @@ export const ExSparsity2 = {
             field: y_field,
             type: 'quantitative',
             legend: { title: y_field },
-            scale: { zero: true }
+            scale: { zero: true },
+            sort: "descending",
+            legend: { title: "Density" }
           }
         }
       }

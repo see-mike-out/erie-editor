@@ -8,11 +8,11 @@ let data = [
   { name: 'E', sparsity: 0.9 }
 ];
 
-export const ExSparsity1 = {
-  name: "Sparsity as density",
-  id: "sparsity-1",
-  route: "examples/sparsity1",
-  note: "This example demonstrates how to use polarity in an audio scale. 'Sparsity (simple)' example diretly maps the degree of sparsity.",
+export const ExSparsity3 = {
+  name: "Sparsity (simple)",
+  id: "sparsity-3",
+  route: "examples/sparsity3",
+  note: "Compare this example with 'Sparsity as density' example that maps sparsity values to represent the density.",
   visualization: {
     name: `The sparsity of ${x_field}.`,
     data: {
@@ -31,9 +31,7 @@ export const ExSparsity1 = {
             field: y_field,
             type: 'quantitative',
             legend: { title: y_field },
-            scale: { zero: true },
-            legend: { title: "Density" },
-            sort: "descending",
+            scale: { zero: true }
           }
         }
       }
@@ -63,9 +61,8 @@ export const ExSparsity1 = {
           domain: [0, 1],
           range: [0, 5],
           band: 2,
-          polarity: "negative",
-          singleTappingPosition: "middle",
-          title: "Density"
+          polarity: "positive",
+          singleTappingPosition: "middle"
         }
       },
       speechBefore: {
