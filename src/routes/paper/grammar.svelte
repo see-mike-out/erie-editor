@@ -468,7 +468,7 @@
       object defined in a <em>stream</em> of a <em>sequence</em> is applied
       after the top-level (global) <em>transform</em> object. Then, an
       <em>overlay</em>
-      is formalized as a list of streams, and A <em>sequence</em> is defined as
+      is formalized as a list of streams, and a <em>sequence</em> is defined as
       an ordered list of streams and overlays:
       <Math
         displayMode={false}

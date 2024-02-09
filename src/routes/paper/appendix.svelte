@@ -52,11 +52,12 @@
       use a <em>continuous</em> (<Eq math={`\\textit{continued} = true`}></Eq>)
       tone for a sonification of a continuous distribution. A sound is
       <em>discrete</em>
-      if it is paused and resumed as auditory values change (e.g., a sound "beep
-      Beep BEEP" with varying loudness). A sound is <em>continuous</em> if it is
-      not paused as its auditory values change (e.g., a sweeping sound "<Eq
-        math={`bee^{C3}-ee^{C\\#3}-{eep}^{D3}`}
-      ></Eq>" with increasing pitch).
+      if it is momentarily paused and resumed as auditory values change (e.g., a
+      sound "beep Beep BEEP" with varying loudness). A sound is
+      <em>continuous</em>
+      if it is not paused as its auditory values change (e.g., a sweeping sound
+      "<Eq math={`bee^{C3}-ee^{C\\#3}-{eep}^{D3}`}></Eq>" with increasing
+      pitch).
     </p>
 
     <p aria-roledescription="paragraph">

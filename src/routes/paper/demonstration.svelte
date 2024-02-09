@@ -38,7 +38,10 @@
       feasibility of our compiler and player for sonification development. In
       addition to the below examples, more use cases, such as a confidence
       interval, histogram, and sonification of COVID-19 death tolls, are
-      available in the Supplementary Material.
+      available in
+      <a href="https://see-mike-out.github.io/erie-editor/" target="_blank"
+        >our example gallery</a
+      >.
     </p>
 
     <h3 aria-roledescription="subsection title">
@@ -223,8 +226,7 @@ spec.encoding.speechBefore.scale("description", "skip");`}
           hard to understand when read out (e.g., in the scale description). To
           prevent reading all the decimals, we specify the read
           <code>format</code>
-          of the density estimates so that they are only read up to the fourth
-          decimal.
+          of the density estimates so that they are only read up to the fourth decimal.
           <em>Erie</em> uses format expressions supported by D3.js <Cite
             content="bostock:d32011"
           ></Cite> (<LineNo>15</LineNo>). Now, we repeat this spec design by the
@@ -438,7 +440,10 @@ modelFit.description("The residuals of a linear regression model of Sepal Length
       We replicate several sonification use cases (e.g., applications and data
       stories) and extend their features to demonstrate how feasibly creators
       can use <em>Erie</em> in development settings. We include the
-      <em>Erie</em> specs used for the below replications in Supplementary Material.
+      <em>Erie</em> specs used for the below replications in
+      <a href="https://see-mike-out.github.io/erie-editor/" target="_blank"
+        >our example gallery</a
+      >.
     </p>
 
     <h4 aria-roledescription="sub-subsection title">
