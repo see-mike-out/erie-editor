@@ -166,6 +166,15 @@
 											audio?.queue?.play(i);
 										}}>Play from this</button
 									>
+									{#if item.type === "tone-series"}
+										<button
+											on:click={() => {
+												audio?.queue?.queue?.[i]?.getPCM().then((p) => {
+													console.log(p);
+												});
+											}}>Get PCM data</button
+										>
+									{/if}
 								</h4>
 								{#if item.type === "text"}
 									<p>
