@@ -166,7 +166,7 @@
 											audio?.queue?.play(i);
 										}}>Play from this</button
 									>
-									{#if item.type === "tone-series"}
+									{#if item.type === "tone-series" || item.type === "tone-overlay-series"}
 										<button
 											on:click={() => {
 												audio?.queue?.queue?.[i]?.getPCM().then((p) => {
