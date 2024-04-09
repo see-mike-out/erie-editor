@@ -10,7 +10,7 @@
 	import CodeViewer from "../../../tester-components/code-viewer.svelte";
 	import * as Erie from "erie-web";
 
-	const compileAuidoGraph = Erie.compileAuidoGraph;
+	const compileAudioGraph = Erie.compileAudioGraph;
 
 	let visSpec = {
 		$schema: "https://vega.github.io/schema/vega-lite/v5.json",
@@ -145,7 +145,7 @@
 	let audio;
 	onMount(() => {
 		renderVLChart("#visualization", visSpec, { actions: false });
-		compileAuidoGraph(audioSpec)
+		compileAudioGraph(audioSpec)
 			.then((audio_graph) => {
 				audio = audio_graph;
 				audio.prerender();

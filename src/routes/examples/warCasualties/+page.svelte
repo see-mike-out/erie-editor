@@ -6,7 +6,7 @@
 	import * as d3 from 'd3';
 	import * as Erie from "erie-web";
 
-	const compileAuidoGraph = Erie.compileAuidoGraph;
+	const compileAudioGraph = Erie.compileAudioGraph;
 
 	let sonification_spec = {
 		data: { values: data },
@@ -93,7 +93,7 @@
 	let audio;
 	onMount(() => {
 		renderVLChart('#vis', vis_spec, { actions: false });
-		compileAuidoGraph(sonification_spec)
+		compileAudioGraph(sonification_spec)
 			.then((audio_graph) => {
 				audio = audio_graph;
 				audio.prerender();

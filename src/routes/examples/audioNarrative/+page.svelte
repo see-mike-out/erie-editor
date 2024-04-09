@@ -5,7 +5,7 @@
 	import * as Erie from "erie-web";
 	import CodeViewer from "../../../tester-components/code-viewer.svelte";
 
-	const compileAuidoGraph = Erie.compileAuidoGraph;
+	const compileAudioGraph = Erie.compileAudioGraph;
 
 	/* chunks
   filter => APPL
@@ -820,7 +820,7 @@
 		}
 
 		console.log(sonificaiton_specs);
-		audio = await compileAuidoGraph(sonificaiton_specs);
+		audio = await compileAudioGraph(sonificaiton_specs);
 		queue = await audio.prerender();
 		window.audioPlayer = audio;
 		return audio;

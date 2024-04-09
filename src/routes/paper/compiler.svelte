@@ -212,7 +212,7 @@ spec.encoding.pitch.field("count", "quantitative")
     <CodeViewer
       autoHeight={true}
       containerId="code-compiler-3"
-      code={`let audioQueue = await compileAuidoGraph(spec.get());`}
+      code={`let audioQueue = await compileAudioGraph(spec.get());`}
       language="javascript"
     ></CodeViewer>
 

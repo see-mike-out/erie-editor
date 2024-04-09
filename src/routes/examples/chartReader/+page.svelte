@@ -6,7 +6,7 @@
 	import { browser } from "$app/environment";
 	import CodeViewer from "../../../tester-components/code-viewer.svelte";
 
-	const compileAuidoGraph = Erie.compileAuidoGraph;
+	const compileAudioGraph = Erie.compileAudioGraph;
 
 	/* chunks
   filter => APPL
@@ -943,7 +943,7 @@
 		if (!useAgg) spec.encoding.time.length = 0.15 * n_data_points[i];
 		spec.config.skipFinishSpeech = isLast ? false : true;
 		spec.config.skipStartSpeech = isFirst ? false : true;
-		audio = await compileAuidoGraph(spec);
+		audio = await compileAudioGraph(spec);
 		await audio.playQueue();
 		audio?.destroy();
 		audio = undefined;

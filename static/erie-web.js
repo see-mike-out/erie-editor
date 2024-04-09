@@ -8067,7 +8067,7 @@
     });
   }
 
-  async function compileAuidoGraph(audio_spec, options) {
+  async function compileAudioGraph(audio_spec, options) {
     let { normalized, datasets, tick, scaleDefinitions, sequenceConfig, synths, samplings, waves } = await normalizeSpecification(audio_spec);
     // console.log(normalized)
     // 1. load datasets first! && filling missing data type
@@ -8246,7 +8246,7 @@
   exports.Transform = Transform;
   exports.Wave = Wave;
   exports.WaveTone = WaveTone;
-  exports.compileAuidoGraph = compileAuidoGraph;
+  exports.compileAudioGraph = compileAudioGraph;
   exports.readyRecording = readyRecording;
   exports.registerFilter = registerFilter;
   exports.setSampleBaseUrl = setSampleBaseUrl;

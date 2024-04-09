@@ -5,7 +5,7 @@
 	import { onMount } from "svelte";
 	import * as Erie from "erie-web";
 
-	const compileAuidoGraph = Erie.compileAuidoGraph;
+	const compileAudioGraph = Erie.compileAudioGraph;
 
 	let content = "",
 		codeStore = writable(),
@@ -26,7 +26,7 @@
 			specError = true;
 			return;
 		}
-		compileAuidoGraph(parsed)
+		compileAudioGraph(parsed)
 			.then((audio_graph) => {
 				audio = audio_graph;
 				audio.prerender().then((q) => {

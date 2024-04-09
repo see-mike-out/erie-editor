@@ -12,7 +12,7 @@
   } from "../../chart-control/highlight-mark";
 
   const readyRecording = Erie.readyRecording;
-  const compileAuidoGraph = Erie.compileAuidoGraph;
+  const compileAudioGraph = Erie.compileAudioGraph;
 
   export let spec = {},
     key = "audio-snippet",
@@ -36,7 +36,7 @@
       specError = true;
       return;
     }
-    compileAuidoGraph(parsed)
+    compileAudioGraph(parsed)
       .then((audio_graph) => {
         audio = audio_graph;
         audio.prerender().then((q) => {
